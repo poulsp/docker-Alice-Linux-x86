@@ -3,8 +3,6 @@
 *~
 *.bak
 
-/mosquitto
-/node-red
 
 /Noter
 /ProjectAlice-buster-savings
