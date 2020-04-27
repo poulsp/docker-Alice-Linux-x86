@@ -2,11 +2,13 @@
 Let ProjectAlice run in a docker container.
 
 I run it on a Ubuntu Destop.
+I have only used it with Google ASR and Amazon Polly TTS.
 Bla. bla bla
 
 Read Installing but be sure also to read [More](#more).
 
 ## Installing.
+Enter following:
 - `docker network create alice-nw`
 - `git clone docker-Alice-Linux-x86`
 - cd into `docker-Alice-Linux-x86/alice`
@@ -15,51 +17,61 @@ Read Installing but be sure also to read [More](#more).
 - cd into `root/misc`
   - `cp config.py.example config.py`
   - Edit `config.py` for your needs.
+  - you can also just use your own, if you already have one working.
+    But be aware of settings "mqttHost": "mqtt",
+    "mqtt" means internal communication with docker mqtt.
+
 - cp your `googlecredentials.json to` `root/misc/googlecredentials.json`
-  - We use Google ASR
+  - For now we only use Google ASR
 - `cp snips.toml.example` into `root/Docker/host_volumes/config/snips.toml`.
-- cd to root folder where the docker-compose.yml is.
-  - Enter `time bash install.sh`
+- cd to root directory where the docker-compose.yml is.
+  - Enter `bash install.sh`
 
 - It will now build the images, on my Ubuntu it takes about 6-8 minutes from start to Alice is up and running.
 - When finished building the images you enter `docker-compose up -d`.
   - You can use 1 or more terminals to enter the container.
-    You must be in root and then enter `docker-compose exec alice-amd bash`.
+    You must be in 'root' and then enter `docker-compose exec alice-amd bash`.
 
-  - After you have entered the container you can start ProjectAlice with `"start-alice"`.
-  - Stop "start-alice" with `ctrl-c`
-  - Exit out of container with `exit`
-  - Pull down the container with `docker-compose down`
-
+  - After you have entered the container you can start ProjectAlice with `'start-alice'`.
+    ```
+    - Start: 'start-alice'
+    - Stop: 'ctrl-c'
+    - Exit out of container with 'exit'
+    - Pull down the container with 'docker-compose down'
+    ```
 When you run the container manualy always use `'alice-start'` not `'venv/bin/python main.py'.`
+
 
 ## More.
 You can edit `docker-compose.yml`.
 Under commands you can set different start commands.
 ```
-  #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf #use mosquitto inside the container
-  #command: tail -f /dev/null
-  #command: bash /start-scripts/start-alice-automatic.sh
-  command: bash /start-scripts/start-alice-manual.sh
+# If using the mosquitto inside the container.
+# You must then edit snips.toml and config.py accordingly.
+#command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+#command: tail -f /dev/null
+#command: bash /start-scripts/start-alice-automatic.sh
+command: bash /start-scripts/start-alice-manual.sh
 ```
 During installation, command must be `command: bash /start-scripts/start-alice-manual.sh`
 
-As you can see in the repository, there is also a mosquitto and node red docker build info.
-Using them with docker-Alice-Linux-x86 is a good idea.
-Remember always start mosquitto before anything else also before installing Alice.
+As you can see in the repository, there is also a companion mosquitto and node red docker build.
+Using them with docker-Alice-L  inux-x86 is a good idea. They then communicate on an internal network, while you also can reach them from the outside.
+**Remember always start mosquitto before anything else also before installing Alice.**
 You can start/stop them with
-  `mosquitto-start.sh` `mosquitto-stop.sh`
-  `nodered-start.sh` `nodered-stop.sh`
+  ```
+  mosquitto-start.sh mosquitto-stop.sh
+  nodered-start.sh nodered-stop.sh
   possibly create a symbolic link to your ~/bin
-
+  ```
 They are placed in docker-Alice-Linux-x86/mosquitto and docker-Alice-Linux-x86/node-red.
-  place you in the folder mosquitto/nodered
-  ```
-  ln -s $(pwd)/mosquitto-start.sh  ~/bin/mosquitto-start.sh
-  ln -s $(pwd)/mosquitto-stop.sh  ~/bin/mosquitto-stop.sh
-  ln -s $(pwd)/nodered-start.sh  ~/bin/nodered-start.sh
-  ln -s $(pwd)/nodered-stop.sh  ~/bin/nodered-stop.sh
-  ```
+Place yourself in the directory mosquitto/nodered
+```
+ln -s $(pwd)/mosquitto-start.sh  ~/bin/mosquitto-start.sh
+ln -s $(pwd)/mosquitto-stop.sh  ~/bin/mosquitto-stop.sh
+ln -s $(pwd)/nodered-start.sh  ~/bin/nodered-start.sh
+ln -s $(pwd)/nodered-stop.sh  ~/bin/nodered-stop.sh
+```
 
 Inside the container where you run 'start-alice' there are a few utilities eg.
 In the /home/pi/bin, "retrain-all, retrain-single, reload.py, alice-start".
@@ -72,7 +84,7 @@ and viewing the log outside the container.
   - tail -f ProjectAlice/var/logs/logs.log
 
 Like you do when you edit your skills.
-- cd root/Docker/host_volumes/ProjectAlice/skills
+- cd root/Docker/host_volumes/ProjectAlice/skills/YourSkill
 - Edit YourSkill
 
 ## Requirements.
@@ -129,13 +141,14 @@ If you want to reinstall Alice then delete every thing in `root/Docker/host_volu
 
 As a precaution do
 ```
-rm -rf root/Docker/host_volumes/ProjectAlice/*
-rm -rf root/Docker/host_volumes/ProjectAlice/.*
-mkdir -p root/Docker/host_volumes/ProjectAlice
-touch root/Docker/host_volumes/ProjectAlice/alice-not-installed
+cd into root directory
+rm -rf Docker/host_volumes/ProjectAlice/*
+rm -rf Docker/host_volumes/ProjectAlice/.*
+mkdir -p Docker/host_volumes/ProjectAlice
+touch Docker/host_volumes/ProjectAlice/alice-not-installed
 docker-compose up
 ```
-An empty root/Docker/host_volumes/ProjectAlice directory is mandatory for the installation to work.
+The root/Docker/host_volumes/ProjectAlice directory  with the file 'alice-not-installed' is mandatory for the installation to work.
 
 ## 📜 License.
 docker-Alice-Linux-x86 ships under GPLv3, it means you are free to use and redistribute the code but are not allowed to use any part of it under a closed license.
