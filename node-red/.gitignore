@@ -1,0 +1,3 @@
+/Docker/host_volumes/data/*
+!/Docker/host_volumes/data/.keep
+/gemme

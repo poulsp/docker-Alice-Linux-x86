@@ -26,6 +26,7 @@ Enter following:
 - `cp snips.toml.example` into `root/Docker/host_volumes/config/snips.toml`.
 - cd to root directory where the docker-compose.yml is.
   - Enter `bash install.sh`
+    With `bash install.sh` you get the right UID and GID in the container.
 
 - It will now build the images, on my Ubuntu it takes about 6-8 minutes from start to Alice is up and running.
 - When finished building the images you enter `docker-compose up -d`.
@@ -55,9 +56,12 @@ command: bash /start-scripts/start-alice-manual.sh
 ```
 During installation, command must be `command: bash /start-scripts/start-alice-manual.sh`
 
-As you can see in the repository, there is also a companion mosquitto and node red docker build.
+As you can see in the repository, there is also a companion mosquitto and nodered docker build.
 Using them with docker-Alice-L  inux-x86 is a good idea. They then communicate on an internal network, while you also can reach them from the outside.
 **Remember always start mosquitto before anything else also before installing Alice.**
+Build 'mosquitto' with `bash install.sh` then you get the right UID and GID in the container.
+With 'nodered' you just use `nodered-start.sh`
+Remember to edit Timezone.env to you needs for both.
 You can start/stop them with
   ```
   mosquitto-start.sh mosquitto-stop.sh

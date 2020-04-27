@@ -1,0 +1,80 @@
+# Kort beskrivelse, formål? hvad,hvorfor
+#
+# docker-compose up -d
+# docker-compose down
+#
+# external network
+# docker network create --driver bridge alice-nw
+#
+# time docker-compose build
+#
+# docker-compose  run --rm mqtt bash
+#
+# docker-compose exec mqtt bash
+#
+##
+
+
+## Inden du starter for første gang, skal du sørge for at mosquitto.db og mosquitto.log eksisterer-
+## Du går ind i henholdsvis Docker/host_volumes/data og Docker/host_volumes/log.
+## Der udfører du en copy:
+##  cp -a mosquitto.log.empty mosquitto.log
+##  sudo chown 1000.101 mosquitto.log
+##  chmod g+rw mosquitto.log
+## og på mosquitto.db
+##  cp -a mosquitto.db.empty mosquitto.db
+##  sudo chown 1000.101 mosquitto.db
+##  chmod g+rw mosquitto.db
+
+
+## Before you start for the first time, make sure that mosquitto.db and mosquitto.log exist-
+## You enter Docker/host_volumes/data and Docker/host_volumes/log respectively.
+## There you make a copy:
+## cp -a mosquitto.log.empty mosquitto.log
+## sudo chown 1000.101 mosquitto.log
+## chmod g + rw mosquitto.log
+## and on mosquitto.db
+## cp -a mosquitto.db.empty mosquitto.db
+## sudo chown 1000.101 mosquitto.db
+## chmod g + rw mosquitto.db
+
+
+version: '2'
+services:
+  mqtt:
+      build:
+        context: .
+        #dockerfile: ./Docker/Dockerfile.amd
+        dockerfile: ./Docker/Dockerfile.amd-strecth
+      image: poulsp/mosquitto-amd
+      container_name: mqtt-amd
+      restart: unless-stopped # Possible values are : no, on-failure[:max-retry], always, unless-stopped
+      #restart: "no" # Possible values are : no, on-failure[:max-retry], always, unless-stopped
+      env_file:
+        - ./Timezone.env
+      volumes:
+        #- ./Docker/host_volumes/transport:/transport
+
+        - ./Docker/host_volumes/data:/var/lib/mosquitto
+        - ./Docker/host_volumes/log:/var/log/mosquitto
+
+      # x86_64  mosquitto
+        - ./Docker/host_volumes/sudoers.d:/etc/sudoers.d
+        - ./Docker/host_volumes/config/mosquitto-amd:/etc/mosquitto
+
+      # # Raspberry  mosquitto
+      #   - ./Docker/host_volumes/sudoers.d:/etc/sudoers.d
+      #   - ./Docker/host_volumes/config/mosquitto-arm:/etc/mosquitto
+      ports:
+      - "1883:1883"
+      - "1884:1884"
+
+      networks:
+        - alice-nw
+
+#
+# [ networks definition ]
+networks:
+  alice-nw:
+    external:
+      name: alice-nw

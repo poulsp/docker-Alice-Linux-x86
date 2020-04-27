@@ -1,0 +1,38 @@
+# Kort beskrivelse, formål? hvad,hvorfor
+#
+# docker-compose up -d
+# docker-compose down
+#
+# external network
+# docker network create --driver bridge alice-nw
+#
+# time docker-compose build
+#
+# docker-compose  run --rm nodered bash
+#
+# docker-compose exec nodered bash
+
+version: '2'
+services:
+    nodered:
+        # We use the official image directly
+        image: nodered/node-red
+        container_name: nodered
+        #restart: unless-stopped # Possible values are : no, on-failure[:max-retry], always, unless-stopped
+        restart: "no" # Possible values are : no, on-failure[:max-retry], always, unless-stopped
+        #command: bash
+        env_file:
+            - ./Timezone.env
+        volumes:
+            - ./Docker/host_volumes/data:/data
+#            - ./Docker/host_volumes/transport:/transport
+        ports:
+            - "1880:1880"
+        networks:
+            - alice-nw
+
+#
+networks:
+  alice-nw:
+    external:
+      name: alice-nw
