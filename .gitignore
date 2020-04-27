@@ -1,3 +1,15 @@
+# Joe's bak files m.m-
+
+*~
+*.bak
+
+/mosquitto
+/node-red
+
+/Noter
+/ProjectAlice-buster-savings
+/test
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

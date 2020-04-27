@@ -1,20 +1,23 @@
 # docker-Alice-Linux-x86.
 Let ProjectAlice run in a docker container.
 
+I run it on a Ubuntu Destop.
 Bla. bla bla
+
 Read Installing but be sure also to read [More](#more).
 
 ## Installing.
+- `docker network create alice-nw`
 - `git clone docker-Alice-Linux-x86`
-- cd into docker-Alice-Linux-x86/alice
+- cd into `docker-Alice-Linux-x86/alice`
 - From now we call docker-Alice-Linux-x86/alias for root.
-- Edit Timezone.env to your needs.
-- cd into root/misc
-  - cp config.py.example config.py
-  - Edit config.py for your needs.
-- cp your googlecredentials.json to root/misc/googlecredentials.json
+- Edit `Timezone.env` to your needs.
+- cd into `root/misc`
+  - `cp config.py.example config.py`
+  - Edit `config.py` for your needs.
+- cp your `googlecredentials.json to` `root/misc/googlecredentials.json`
   - We use Google ASR
-- cp snips.toml.example into root/Docker/host_volumes/config/snips.toml.
+- `cp snips.toml.example` into `root/Docker/host_volumes/config/snips.toml`.
 - cd to root folder where the docker-compose.yml is.
   - Enter `time bash install.sh`
 
@@ -28,16 +31,17 @@ Read Installing but be sure also to read [More](#more).
   - Exit out of container with `exit`
   - Pull down the container with `docker-compose down`
 
-When you run the container manualy always use 'alice-start' not 'venv/bin/python main.py'.
+When you run the container manualy always use `'alice-start'` not `'venv/bin/python main.py'.`
 
 ## More.
-You can edit docker-compose.yml.
+You can edit `docker-compose.yml`.
 Under commands you can set different start commands.
-- #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf #use mosquitto inside the container
-- #command: tail -f /dev/null
-- #command: bash /start-scripts/start-alice-automatic.sh
-- command: bash /start-scripts/start-alice-manual.sh
-
+```
+  #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf #use mosquitto inside the container
+  #command: tail -f /dev/null
+  #command: bash /start-scripts/start-alice-automatic.sh
+  command: bash /start-scripts/start-alice-manual.sh
+```
 During installation, command must be `command: bash /start-scripts/start-alice-manual.sh`
 
 As you can see in the repository, there is also a mosquitto and node red docker build info.
@@ -46,7 +50,16 @@ Remember always start mosquitto before anything else also before installing Alic
 You can start/stop them with
   `mosquitto-start.sh` `mosquitto-stop.sh`
   `nodered-start.sh` `nodered-stop.sh`
-They are places in docker-Alice-Linux-x86/node-red and docker-Alice-Linux-x86/mosquitto.
+  possibly create a symbolic link to your ~/bin
+
+They are placed in docker-Alice-Linux-x86/mosquitto and docker-Alice-Linux-x86/node-red.
+  place you in the folder mosquitto/nodered
+  ```
+  ln -s $(pwd)/mosquitto-start.sh  ~/bin/mosquitto-start.sh
+  ln -s $(pwd)/mosquitto-stop.sh  ~/bin/mosquitto-stop.sh
+  ln -s $(pwd)/nodered-start.sh  ~/bin/nodered-start.sh
+  ln -s $(pwd)/nodered-stop.sh  ~/bin/nodered-stop.sh
+  ```
 
 Inside the container where you run 'start-alice' there are a few utilities eg.
 In the /home/pi/bin, "retrain-all, retrain-single, reload.py, alice-start".
@@ -60,7 +73,7 @@ and viewing the log outside the container.
 
 Like you do when you edit your skills.
 - cd root/Docker/host_volumes/ProjectAlice/skills
-- Edit yourSkill
+- Edit YourSkill
 
 ## Requirements.
 [Docker](https://www.docker.com/) installed.
@@ -100,7 +113,7 @@ Then
     sudo systemctl restart snips-skill-respeaker-sat.service or
     sudo systemctl restart hermesledcontrol.service
 
-with 'bind = "default @ mqtt"' the same as the Alice head you give her both mouth and ears. otherwise she's pretty deaf-mute.
+with 'bind = "default@mqtt"' the same as the Alice head you give her both mouth and ears. otherwise she's pretty deaf-mute.
 
 That's that.
 
@@ -110,6 +123,18 @@ Sometimes that mistake comes the first time you ask her something right after th
 
 `[MqttManager] Session "647b2527-e4b1-49e2-ad99-e166d9e09a3f" ended with an unrecoverable error: Receives error from component Nlu: { error: Cannot use unknown intent 'greeting' in intents filter
 , context: what time is it }`
+
+## Reinstall.
+If you want to reinstall Alice then delete every thing in root/Docker/host_volumes/ProjectAlice/*
+As a precaution do
+```
+rm -rf root/Docker/host_volumes/ProjectAlice/*
+rm -rf root/Docker/host_volumes/ProjectAlice/.*
+mkdir -p root/Docker/host_volumes/ProjectAlice
+touch root/Docker/host_volumes/ProjectAlice/alice-not-installed
+docker-compose up
+```
+An empty root/Docker/host_volumes/ProjectAlice directory is mandatory for the installation to work.
 
 ## 📜 License.
 docker-Alice-Linux-x86 ships under GPLv3, it means you are free to use and redistribute the code but are not allowed to use any part of it under a closed license.
