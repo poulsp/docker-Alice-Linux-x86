@@ -125,7 +125,7 @@ Sometimes that mistake comes the first time you ask her something right after th
 , context: what time is it }`
 
 ## Reinstall.
-If you want to reinstall Alice then delete every thing in root/Docker/host_volumes/ProjectAlice/*
+If you want to reinstall Alice then delete every thing in `root/Docker/host_volumes/ProjectAlice/*`
 As a precaution do
 ```
 rm -rf root/Docker/host_volumes/ProjectAlice/*
