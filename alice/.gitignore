@@ -8,4 +8,5 @@
 /misc/*
 !/misc/.gitignore
 !/misc/config.py.example
+!/misc/alice-not-installed
 
