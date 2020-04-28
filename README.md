@@ -18,10 +18,10 @@ Enter following:
 - cd into `root/misc`
   - `cp config.py.example config.py`
   - Edit `config.py` for your needs.
-  - you can also just use your own, if you already have one working.
-    But be aware of settings "mqttHost": "mqtt",
-    "mqtt" means internal communication with docker mqtt.
-    if you use a diffent mqtt host edit `'config.py'` and  `'snips.toml'` in root/Docker/host_volumes/config.
+  - you can also just use your own, if you already have one working.<br>
+    But be aware of settings "mqttHost": "mqtt",   
+    "mqtt" means internal communication with docker mqtt.<br>
+    if you use a diffent mqtt host edit `'config.py'` and  `'snips.toml'` in root/Docker/host_volumes/config.<br>
     read [More](#more) section first.
 - cp your `googlecredentials.json to` `root/misc/googlecredentials.json`
   - For now we only use Google ASR
