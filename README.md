@@ -9,6 +9,9 @@ Bla. bla bla
 Read Installing but be sure also to read [More](#more).
 
 ## Installing.
+Have these three files in Your head from now. It will save you for troubles later on.
+
+    `'config.py'` `'snips.toml'` and `'googlecredentials.json'`
 Enter following:
 - `docker network create alice-nw`
 - `git clone docker-Alice-Linux-x86`
