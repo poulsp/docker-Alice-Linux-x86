@@ -1,0 +1,84 @@
+settings = {
+    "activeCountryCode": "US",
+    "activeLanguage": "en",
+    "adminPinCode": 7894,
+    "aliceAutoUpdate": False,
+    "aliceUpdateChannel": "beta",
+    "asr": "google",
+    "asrTimeout": 10,
+    "autoPruneStoredData": 1000,
+    "autoReportSkillErrors": False,
+    "awsAccessKey": "",
+    "awsRegion": "eu-central-1",
+    "awsSecretKey":  "",
+    "baseCurrency": "USD",
+    "baseUnits": "metric",
+    "debug": True,
+    "devMode": True,
+    "disableSoundAndMic": True,
+    "enableDataStoring": True,
+    "githubToken":  "",
+    "githubUsername":  "",
+    "keepASROffline": False,
+    "keepTTSOffline": False,
+    "micChannels": 1,
+    "micSampleRate": 16000,
+    "mqttHost": "mqtt",
+    "mqttPassword": "",
+    "mqttPort": 1883,
+    "mqttTLSFile": "",
+    "mqttUser": "",
+    "newDeviceBroadcastPort": 12354,
+    "nluEngine": "snips",
+    "nonNativeSupportCountry": "",
+    "nonNativeSupportLanguage": "",
+    "notUnderstoodRetries": 3,
+    "onReboot": "",
+    "probabilityThreshold": 0.45,
+    "shortReplies": False,
+    "skillAutoUpdate": False,
+    "skillsUpdateChannel": "beta",
+    "ssid": "RNP",
+    "stayCompletlyOffline": False,
+    "supportedLanguages": {
+        "en": {
+            "default": True,
+            "defaultCountryCode": "US",
+            "countryCodes": [
+                "US",
+                "GB",
+                "AU"
+            ]
+        },
+        "fr": {
+            "default": False,
+            "defaultCountryCode": "FR",
+            "countryCodes": [
+                "FR"
+            ]
+        },
+        "de": {
+            "default": False,
+            "defaultCountryCode": "DE",
+            "countryCodes": [
+                "DE"
+            ]
+        },
+        "it": {
+            "default": False,
+            "defaultCountryCode": "IT",
+            "countryCodes": [
+                "IT"
+            ]
+        }
+    },
+    "tts": "amazon",
+    "ttsLanguage": "en-US",
+    "ttsType": "female",
+    "ttsVoice": "Joanna",
+    "useHLC": False,
+    "webInterfaceActive": True,
+    "webInterfacePort": 5000,
+    "whisperWhenSleeping": True,
+    "wifipassword":  ""
+}

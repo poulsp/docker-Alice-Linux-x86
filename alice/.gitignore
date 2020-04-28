@@ -1,0 +1,11 @@
+*~
+*.bak
+
+/config.py
+/googlecredentials.json
+
+
+/misc/*
+!/misc/.gitignore
+!/misc/config.py.example
+

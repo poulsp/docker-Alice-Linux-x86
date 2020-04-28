@@ -1,0 +1,58 @@
+# Kort beskrivelse, formål? hvad,hvorfor
+#
+# docker-compose run --rm alice-amd bash
+# docker-compose exec alice-amd bash
+# docker-compose down;docker-compose up -d; docker-compose exec alice-amd bash
+#
+# docker-compose exec alice-amd bash -c 'snips-watch -vvv'
+
+# docker-compose exec alice-amd bash
+
+version: '2.2'
+services:
+  alice-amd:
+      build:
+        context: .
+        dockerfile: ./Docker/Dockerfile
+      image: poulsp/alice-amd
+      container_name: alice-amd
+      init: true
+      restart: unless-stopped # Possible values are : no, on-failure[:max-retry], always, unless-stopped
+      #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+      #command: tail -f /dev/null
+      #command: bash /start-scripts/start-alice-automatic.sh
+      command: bash /start-scripts/start-alice-manual.sh
+
+      env_file:
+        - ./Timezone.env
+      environment:
+        #- TZ=Europe/Copenhagen
+        - USE_DEEP_SPEECH=false
+      volumes:
+        - ./misc:/misc
+        - ./Docker/host_volumes/start-scripts:/start-scripts
+
+        - ./Docker/host_volumes/config/snips.toml:/etc/snips.toml
+        - ./Docker/host_volumes/config/etc/mosquitto:/etc/mosquitto
+        - ./Docker/host_volumes/log/mosquitto:/var/log/mosquitto
+
+        - ./Docker/host_volumes/config/bashrc:/home/pi/.bashrc
+        - ./Docker/host_volumes/config/gitconfig:/home/pi/.gitconfig
+        - ./Docker/host_volumes/bin:/home/pi/bin
+        - ./Docker/host_volumes/ProjectAlice:/home/pi/ProjectAlice
+
+        - ./Docker/host_volumes/transport:/transport
+      ports:
+#        - "1883:1883"
+#        - "1884:1884"
+        - "5000:5000"
+      networks:
+       - alice-nw
+
+#
+# [ networks definition ]
+#
+networks:
+  alice-nw:
+    external:
+      name: alice-nw

@@ -3,6 +3,7 @@ Let ProjectAlice run in a docker container.
 
 I run it on a Ubuntu Destop.
 I have only used it with Google ASR and Amazon Polly TTS.
+
 Bla. bla bla
 
 Read Installing but be sure also to read [More](#more).
@@ -12,7 +13,7 @@ Enter following:
 - `docker network create alice-nw`
 - `git clone docker-Alice-Linux-x86`
 - cd into `docker-Alice-Linux-x86/alice`
-- From now we call docker-Alice-Linux-x86/alias for root.
+- From now we call docker-Alice-Linux-x86/alice for root.
 - Edit `Timezone.env` to your needs.
 - cd into `root/misc`
   - `cp config.py.example config.py`
@@ -57,8 +58,9 @@ command: bash /start-scripts/start-alice-manual.sh
 During installation, command must be `command: bash /start-scripts/start-alice-manual.sh`
 
 As you can see in the repository, there is also a companion mosquitto and nodered docker build.
-Using them with docker-Alice-L  inux-x86 is a good idea. They then communicate on an internal network, while you also can reach them from the outside.
+Using them with docker-Alice-Linux-x86 is a good idea. They then communicate on an internal network, while you also can reach them from the outside.
 **Remember always start mosquitto before anything else also before installing Alice.**
+
 Build 'mosquitto' with `bash install.sh` then you get the right UID and GID in the container.
 With 'nodered' you just use `nodered-start.sh`
 Remember to edit Timezone.env to you needs for both.
@@ -66,8 +68,8 @@ You can start/stop them with
   ```
   mosquitto-start.sh mosquitto-stop.sh
   nodered-start.sh nodered-stop.sh
-  possibly create a symbolic link to your ~/bin
   ```
+Possibly create a symbolic link to your ~/bin
 They are placed in docker-Alice-Linux-x86/mosquitto and docker-Alice-Linux-x86/node-red.
 Place yourself in the directory mosquitto/nodered
 ```
@@ -83,11 +85,11 @@ In the /home/pi/bin, "retrain-all, retrain-single, reload.py, alice-start".
 You can use `docker-compose exec alice-amd bash` in different ways eg.
 - `docker-compose exec alice-amd bash -c 'snips-watch -vvv'`
 
-and viewing the log outside the container.
+or viewing the log outside the container.
   - cd root/Docker/host_volumes
   - tail -f ProjectAlice/var/logs/logs.log
 
-Like you do when you edit your skills.
+like you do when you edit your skills.
 - cd root/Docker/host_volumes/ProjectAlice/skills/YourSkill
 - Edit YourSkill
 
@@ -110,10 +112,10 @@ So you have to use a satellite.
 Alice first welcome you based on her creation of a new database.
 It is best to start there with an old snips satellite.
 But if you have installed a Alice satellite then use the following instruction.
-Same procedure for the old snips satellite
+Same procedure for the old snips satellite.
 
 ssh into the satellite.
-sudo joe /etc/snips.toml and edit:
+sudo nano /etc/snips.toml and edit:
 
 >
     [snips-common]
@@ -129,13 +131,13 @@ Then
     sudo systemctl restart snips-skill-respeaker-sat.service or
     sudo systemctl restart hermesledcontrol.service
 
-with 'bind = "default@mqtt"' the same as the Alice head you give her both mouth and ears. otherwise she's pretty deaf-mute.
+with 'bind = "default@mqtt"' the same as the Alice main unit you give her both mouth and ears. otherwise she's pretty deaf-mute.
 
 That's that.
 
 ## Troubleshooting.
 The first time you ask Alice for something and you get the error below, then do a 'ctrl-c' and a 'alice-start'.
-Sometimes that mistake comes the first time you ask her something right after the installation.
+Sometimes that error comes the first time you ask her to do something right after the installation.
 
 `[MqttManager] Session "647b2527-e4b1-49e2-ad99-e166d9e09a3f" ended with an unrecoverable error: Receives error from component Nlu: { error: Cannot use unknown intent 'greeting' in intents filter
 , context: what time is it }`

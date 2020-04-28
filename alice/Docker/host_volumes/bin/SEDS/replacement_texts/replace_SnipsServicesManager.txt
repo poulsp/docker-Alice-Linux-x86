@@ -1,0 +1,38 @@
+			if cmd == 'start':
+				os.system(f"{service} > /dev/null 2>&1 &")
+				self.logInfo(f"cmd: {cmd} - service: {service} ################")
+
+			elif  cmd == 'stop':
+				self.logInfo(f"cmd: {cmd} - service: {service} ################")
+				retValue = subprocess.check_output(["pidof", f"{service}"])
+				os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+			elif  cmd == 'restart':
+				self.logInfo(f"cmd: {cmd} - service: {service} ################")
+				retValue = subprocess.check_output(["pidof", f"{service}"])
+				os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+				os.system(f"{service} > /dev/null 2>&1 &")
+			else:
+				self.logInfo(f"cmd: {cmd} - service: {service} ################")
+				result = self.Commons.runRootSystemCommand(['systemctl', cmd, service])
+				if result.returncode == 0:
+					self.logInfo(f"{cmd.title()} service {service} ok")
+				elif result.returncode != 5:
+					self.logInfo(f"Tried to {cmd} the {service} service but it returned with return code {result.returncode}")
+
+
+
+			# if cmd == 'start':
+			# 	os.system(f"{service} > /dev/null 2>&1 &")
+			# elif  cmd == 'stop':
+			# 	retValue = subprocess.check_output(["pidof", f"{service}"])
+			# 	os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+			# elif  cmd == 'restart':
+			# 	retValue = subprocess.check_output(["pidof", f"{service}"])
+			# 	os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+			# 	os.system(f"{service} > /dev/null 2>&1 &")
+			# else:
+			# 	result = self.Commons.runRootSystemCommand(['systemctl', cmd, service])
+			# 	if result.returncode == 0:
+			# 		self.logInfo(f"{cmd.title()} service {service} ok")
+			# 	elif result.returncode != 5:
+			# 		self.logInfo(f"Tried to {cmd} the {service} service but it returned with return code {result.returncode}")
