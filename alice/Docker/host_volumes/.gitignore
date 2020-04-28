@@ -2,8 +2,6 @@
 /ProjectAlice/*
 !/ProjectAlice/alice-not-installed
 
-/config/snips.toml
-!/config/snips.toml.example
 
 /config/etc/*
 !/config/etc/mosquitto

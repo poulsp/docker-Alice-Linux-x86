@@ -21,10 +21,10 @@ Enter following:
   - you can also just use your own, if you already have one working.
     But be aware of settings "mqttHost": "mqtt",
     "mqtt" means internal communication with docker mqtt.
-
+    if you use a diffent mqtt host edit `'config.py'` and  `'snips.toml'` in root/Docker/host_volumes/config.
+    read [More](#more) section first.
 - cp your `googlecredentials.json to` `root/misc/googlecredentials.json`
   - For now we only use Google ASR
-- `cp snips.toml.example` into `root/Docker/host_volumes/config/snips.toml`.
 - cd to root directory where the docker-compose.yml is.
   - Enter `bash install.sh`
     With `bash install.sh` you get the right UID and GID in the container.
