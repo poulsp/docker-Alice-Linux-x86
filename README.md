@@ -16,26 +16,26 @@ Enter following:
 - `docker network create alice-nw`
 - `git clone docker-Alice-Linux-x86`
 - cd into `docker-Alice-Linux-x86/alice`
-- From now we call docker-Alice-Linux-x86/alice for root.
+- From now we call docker-Alice-Linux-x86/alice for just alice.
 - Edit `Timezone.env` to your needs.
-- cd into `root/misc`
+- cd into `alice/misc`
   - `cp config.py.example config.py`
   - Edit `config.py` for your needs.
   - you can also just use your own, if you already have one working.<br>
-    But be aware of settings "mqttHost": "mqtt",   
+    But be aware of settings "mqttHost": "mqtt",
     "mqtt" means internal communication with docker mqtt.<br>
-    if you use a diffent mqtt host edit `'config.py'` and  `'snips.toml'` in root/Docker/host_volumes/config.<br>
+    if you use a diffent mqtt host edit `'config.py'` and  `'snips.toml'` in alice/Docker/host_volumes/config.<br>
     read [More](#more) section first.
-- cp your `googlecredentials.json to` `root/misc/googlecredentials.json`
+- cp your `googlecredentials.json to` `alice/misc/googlecredentials.json`
   - For now we only use Google ASR
-- cd to root directory where the docker-compose.yml is.
-  - Enter `bash install.sh`
+- cd to alice directory where the docker-compose.yml is.
+  - Enter **`bash install.sh`**
     With `bash install.sh` you get the right UID and GID in the container.
 
 - It will now build the images, on my Ubuntu it takes about 6-8 minutes from start to Alice is up and running.
 - When finished building the images you enter `docker-compose up -d`.
   - You can use 1 or more terminals to enter the container.
-    You must be in 'root' and then enter `docker-compose exec alice-amd bash`.
+    You must be in 'alice' and then enter `docker-compose exec alice-amd bash`.
 
   - After you have entered the container you can start ProjectAlice with `'start-alice'`.
     ```
@@ -89,11 +89,11 @@ You can use `docker-compose exec alice-amd bash` in different ways eg.
 - `docker-compose exec alice-amd bash -c 'snips-watch -vvv'`
 
 or viewing the log outside the container.
-  - cd root/Docker/host_volumes
+  - cd alice/Docker/host_volumes
   - tail -f ProjectAlice/var/logs/logs.log
 
 like you do when you edit your skills.
-- cd root/Docker/host_volumes/ProjectAlice/skills/YourSkill
+- cd alice/Docker/host_volumes/ProjectAlice/skills/YourSkill
 - Edit YourSkill
 
 ## Requirements.
@@ -146,18 +146,18 @@ Sometimes that error comes the first time you ask her to do something right afte
 , context: what time is it }`
 
 ## Reinstall.
-If you want to reinstall Alice then delete every thing in `root/Docker/host_volumes/ProjectAlice/*`
+If you want to reinstall Alice then delete every thing in `alice/Docker/host_volumes/ProjectAlice/*`
 
 As a precaution do
 ```
-cd into root directory
+cd into alice directory
 rm -rf Docker/host_volumes/ProjectAlice/*
 rm -rf Docker/host_volumes/ProjectAlice/.*
 mkdir -p Docker/host_volumes/ProjectAlice
 touch Docker/host_volumes/ProjectAlice/alice-not-installed
 docker-compose up
 ```
-The root/Docker/host_volumes/ProjectAlice directory  with the file 'alice-not-installed' is mandatory for the installation to work.
+The alice/Docker/host_volumes/ProjectAlice directory  with the file 'alice-not-installed' is mandatory for the installation to work.
 
 ## 📜 License.
 docker-Alice-Linux-x86 ships under GPLv3, it means you are free to use and redistribute the code but are not allowed to use any part of it under a closed license.

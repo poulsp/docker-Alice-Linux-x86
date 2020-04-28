@@ -3,8 +3,8 @@
 
 if [ ! -e /misc/config.py ]; then
   echo
-  echo 'alice-buster/misc/config.py dont exist!'
-  echo 'cd into alice-buster/misc.'
+  echo 'alice/misc/config.py dont exist!'
+  echo 'cd into alice/misc.'
   echo 'Copy config.py.example to config.py.'
   echo 'Edit config.py for your needs.'
   echo
@@ -14,9 +14,10 @@ fi
 
 if [ ! -e /misc/googlecredentials.json ]; then
   echo
-  echo 'alice-buster/misc/googlecredentials.json dont exist!'
+  echo 'alice/misc/googlecredentials.json dont exist!'
   echo 'Please place it in there.'
   echo 'For the moment this installation only support google ASR.'
+  exit 0
   echo
 fi
 
@@ -24,8 +25,8 @@ fi
 if [ -d /home/pi/ProjectAlice ]; then
   owner=`stat -c '%U' /home/pi/ProjectAlice`
   if [ "$owner" == "root" ]; then
-    echo '  /home/pi/ProjectAlice are owned by root, pull down the container and remove alice-buster/Docker/host_volumes/ProjectAlice with sudo.'
-    echo '  and then mkdir -p  alice-buster/Docker/host_volumes/ProjectAlice.'
+    echo '  /home/pi/ProjectAlice are owned by root, pull down the container and remove alice/Docker/host_volumes/ProjectAlice with sudo.'
+    echo '  and then mkdir -p  alice/Docker/host_volumes/ProjectAlice.'
   else
     # if [ -z "$(ls -A -- '/home/pi/ProjectAlice')" ]; then
     if [ -e /home/pi/ProjectAlice/alice-not-installed ]; then

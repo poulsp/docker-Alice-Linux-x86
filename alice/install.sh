@@ -1,6 +1,29 @@
 
 START_TIME=`date +%s`
 
+
+if [ ! -e ./misc/config.py ]; then
+  clear
+  echo
+  echo -e "  \033[41;5;2m\033[1;37;228m alice/misc/config.py dont exist  \033[0m"
+  echo '  cd into alice/misc.'
+  echo '  Copy config.py.example to config.py.'
+  echo '  Edit config.py for your needs.'
+  echo
+  exit 0
+fi
+
+
+if [ ! -e ./misc/googlecredentials.json ]; then
+  clear
+  echo
+  echo -e "  \033[41;5;2m\033[1;37;228m alice/misc/googlecredentials.json dont exist!    \033[0m"
+  echo '  Please place it in there.'
+  echo '  For the moment this installation only support google ASR.'
+  echo
+  exit 0
+fi
+
 docker-compose down >/dev/null 2>&1
 
 echo
