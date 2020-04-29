@@ -24,7 +24,9 @@ if [ ! -e ./misc/googlecredentials.json ]; then
   exit 0
 fi
 
+
 docker-compose down >/dev/null 2>&1
+
 
 echo
 USERID=`id -u $"$USER"`
@@ -34,10 +36,17 @@ echo $"Your GROUPID: $GROUPID"
 echo
 
 
+BUILD_ARGS=""
+# -f for force build image
+if [ "$1" == "-f" ];then
+  BUILD_ARGS="--no-cache"
+fi
+
+
 #Is image builded
 image=`docker image ls  -q poulsp/alice-amd | cat -`
-if [  -z $image  ];then
-  time docker build --build-arg UID=$"$USERID" --build-arg GID=$"$GROUPID"  -t poulsp/alice-amd -f Docker/Dockerfile .
+if [  -z $image  ] || [ "$BUILD_ARGS" ];then
+  time docker build $"$BUILD_ARGS" --force-rm --build-arg UID=$"$USERID" --build-arg GID=$"$GROUPID"  -t poulsp/alice-amd -f Docker/Dockerfile .
 fi
 
 
