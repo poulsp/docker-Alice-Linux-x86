@@ -48,8 +48,6 @@ if [ -d Docker/host_volumes/ProjectAlice ] ; then
     echo $"Wrong owner $owner"
     echo "  Docker/host_volumes/ProjectAlice are owned by $owner, remove Docker/host_volumes/ProjectAlice with sudo"
     echo '  sudo rm -r Docker/host_volumes/ProjectAlice'
-    echo '  and then'
-    echo '  mkdir -p  Docker/host_volumes/ProjectAlice'
     echo
     exit 0
   fi
@@ -78,6 +76,16 @@ if [ ! -e ./misc/googlecredentials.json ]; then
   exit 0
 fi
 
+if [ ! -e ./Docker/host_volumes/config/snips.toml ]; then
+  clear
+  echo
+  echo -e "  \033[41;5;2m\033[1;37;228m alice/Docker/host_volumes/config/snips.toml dont exist  \033[0m"
+  echo '  cd into alice//Docker/host_volumes/config.'
+  echo '  Copy snips.toml.example to snips.toml.'
+  echo '  Edit snips.toml for your needs.'
+  echo
+  exit 0
+fi
 
 
 
