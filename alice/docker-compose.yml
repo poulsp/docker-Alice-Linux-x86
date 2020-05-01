@@ -28,7 +28,7 @@ services:
       environment:
         #- TZ=Europe/Copenhagen
         - USE_DEEP_SPEECH=false
-        - DEVELOPMENT=true
+        - DEVELOPMENT=false
       volumes:
         - ./misc:/misc
         - ./Docker/host_volumes/start-scripts:/start-scripts
