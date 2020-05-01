@@ -28,7 +28,7 @@ if [ -d /home/pi/ProjectAlice ]; then
     if [ $DEVELOPMENT == true ]; then
       bash /start-scripts/install/do_clone_alice_dev.sh
     else
-      bash /start-scripts/install/do_make_venv.sh
+      bash /start-scripts/install/do_clone_alice.sh
     fi
   fi
 fi

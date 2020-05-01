@@ -9,7 +9,8 @@
 /config/etc/*
 !/config/etc/mosquitto
 !/config/etc/supervisor
-#!/config/snips.toml.example
+!/config/snips.toml.example
+/config/snips.toml
 /config/supervisord.conf
 
 /config/snips.conf-fra-P60
