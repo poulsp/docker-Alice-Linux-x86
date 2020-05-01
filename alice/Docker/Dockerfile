@@ -35,6 +35,7 @@ RUN set -xe \
         psmisc \
         procps \
         python-dev \
+        libpython3.7-dev \
         supervisor \
         alsa-utils \
 #RUN set -xe \
@@ -71,7 +72,6 @@ RUN set -xe \
         mosquitto-clients \
         libxml2-dev \
         libxslt-dev \
-        libpython3.7-dev \
         flac \
         libatlas-base-dev \
         gfortran  \

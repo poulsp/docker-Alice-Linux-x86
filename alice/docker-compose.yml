@@ -28,6 +28,7 @@ services:
       environment:
         #- TZ=Europe/Copenhagen
         - USE_DEEP_SPEECH=false
+        - DEVELOPMENT=true
       volumes:
         - ./misc:/misc
         - ./Docker/host_volumes/start-scripts:/start-scripts
@@ -43,6 +44,8 @@ services:
 
         - ./Docker/host_volumes/transport:/transport
       ports:
+        # uncomment ports if command is command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+        # Container internal mosquitto.
 #        - "1883:1883"
 #        - "1884:1884"
         - "5000:5000"

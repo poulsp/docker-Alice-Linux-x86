@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [ -z ${DEVELOPMENT+x} ]; then DEVELOPMENT=false; fi
+
 
 if [ ! -e /misc/config.py ]; then
   echo
@@ -21,17 +23,12 @@ if [ ! -e /misc/googlecredentials.json ]; then
   echo
 fi
 
-
 if [ -d /home/pi/ProjectAlice ]; then
-  owner=`stat -c '%U' /home/pi/ProjectAlice`
-  if [ "$owner" == "root" ]; then
-    echo '  /home/pi/ProjectAlice are owned by root, pull down the container and remove alice/Docker/host_volumes/ProjectAlice with sudo.'
-    echo '  and then mkdir -p  alice/Docker/host_volumes/ProjectAlice.'
-  else
-    # if [ -z "$(ls -A -- '/home/pi/ProjectAlice')" ]; then
-    if [ -e /home/pi/ProjectAlice/alice-not-installed ]; then
-      bash /start-scripts/install/do_clone_alice.sh
-      rm -f /home/pi/ProjectAlice/alice-not-installed
+  if [ -z "$(ls -A -- '/home/pi/ProjectAlice')" ]; then
+    if [ $DEVELOPMENT == true ]; then
+      bash /start-scripts/install/do_clone_alice_dev.sh
+    else
+      bash /start-scripts/install/do_make_venv.sh
     fi
   fi
 fi
@@ -59,10 +56,16 @@ if [ ! -e /home/pi/ProjectAlice/var/cache/dialogTemplates/checksums.json ]; then
 fi
 
 
-if [ ! -e /home/pi/ProjectAlice/venv ]; then
+if [ ! -d /home/pi/ProjectAlice/venv ]; then
   # Install venv
-  bash /start-scripts/install/do_make_venv.sh
-  cp -af /misc/config.py /home/pi/ProjectAlice/config.py
-  cp -af /misc/googlecredentials.json /home/pi/ProjectAlice/credentials
+  if [ $DEVELOPMENT == true ]; then
+    bash /start-scripts/install/do_make_venv_dev.sh
+  else
+    bash /start-scripts/install/do_make_venv.sh
+  fi
+
+  #cp -af /misc/config.py /home/pi/ProjectAlice/config.py
+  #cp -af /misc/googlecredentials.json /home/pi/ProjectAlice/credentials
   exit 0
 fi
+

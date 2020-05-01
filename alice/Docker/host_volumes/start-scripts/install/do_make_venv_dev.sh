@@ -6,63 +6,29 @@ echo '  +-------------------------------------------------------------+'
 echo -e "  | \e[48;5;2m\e[38;5;228m                    Docker Alice x86                       \e[39m\e[49m |"
 echo '  |-------------------------------------------------------------|'
 echo -e '  |                                                             |'
-echo "  |  Creating venv.                                             |"
+echo "  |  Creating venv.  development edition                        |"
 echo '  |-------------------------------------------------------------|'
 echo "  |                                                             |"
 echo "  |  Takes a little time.                                       |"
 echo '  +-------------------------------------------------------------+'
 echo ''
 
-##TODO comment out this
-#cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
+##TODO While developing this comment out this 4 lines else mark them with comments.
+cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
+cd /misc && tar -xzf amazon.tgz -C /home/pi/ProjectAlice/var/cache/
+cd /misc && tar -xzf hotword-john.tgz -C /home/pi/ProjectAlice/trained/hotwords
+cd /misc && cp -a data.db /home/pi/ProjectAlice/system/database/
 
-##TODO uncomment this
-python3 -m venv ./venv
-venv/bin/pip install --upgrade pip
 
-REQUIREMENTS_TEXT=$(cat <<'END_HEREDOC'
-pyalsaaudio==0.8.4
-python-dateutil==2.8.0
-paho-mqtt==1.5.0
-requests==2.21.0
-esptool==2.8
-pyserial==3.4
-pydub==0.23.1
-terminaltables==3.1.0
-click==7.0
-pyyaml==5.3
-boto3==1.10.46
-flask==1.1.1
-flask-classful==0.14.2
-flask-login==0.4.1
-flask-socketio==4.2.1
-googletrans==2.4.0
-bcrypt==3.1.7
-psutil==5.6.7
-numpy==1.16.2
-pyjwt==1.7.1
-importlib_metadata==1.6.0
-webrtcvad==2.0.10
-snips-nlu==0.20.2
-babel==2.7.0
-google-cloud-speech==1.3.1
-
-####
-#new 2020-04-23
-#PyAudio==0.2.11
-
-#uninstall
-#pyalsaaudio
-END_HEREDOC
-)
-
-echo "$REQUIREMENTS_TEXT" > requirements.txt
-
-venv/bin/pip install -r requirements.txt
-venv/bin/python -m snips_nlu download en
-
-#TODO glem den lydfil
-#cp -ar /misc/amazon/ /home/pi/ProjectAlice//var/cache/
+# Copy skills
+if [ $DEVELOPMENT == true ]; then
+  if [ -e /misc/ProjectAliceSkills.tgz ] ; then
+    cd /misc &&  tar -xzf ProjectAliceSkills.tgz -C /home/pi/ProjectAlice/skills
+  fi
+  if [ -e /misc/trainingData.tgz ] ; then
+    cd /misc && tar -xzf trainingData.tgz -C /home/pi/ProjectAlice/var/cache/nlu/trainingData
+  fi
+fi
 
 ~/bin/sed_all.sh
 cd ~/ProjectAlice
@@ -102,6 +68,5 @@ echo "  |  The system is now at your service.                                   
 echo "  |  Good luck!                                                                                                     |"
 echo '  +-------------------------------------------------------------------------------------------------------------- ---+'
 echo ''
-
-sleep 2
+#exit 0
 sudo kill -9 7
