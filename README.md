@@ -4,47 +4,56 @@ Let ProjectAlice run in a docker container.
 I run it on a Ubuntu Destop.
 I have only used it with Google ASR and Amazon Polly TTS.
 
+As this is work in progress. it will be a good idea to make an update occasionally after you have installed it.
+```
+"git stash"
+"git stash clear"
+"git pull"
+```
+
 Bla. bla bla
 
-Read Installing but be sure also to read [More](#more).
+Read [Installing](#Installing) but be sure also to read [More](#more).
 
 ## Installing.
 Have these three files in Your head from now. It will save you for troubles later on.
-
-    `'config.py'` `'snips.toml'` and `'googlecredentials.json'`
+```
+"config.py" "snips.toml" and `"googlecredentials.json"
+```
 Enter following:
-- `docker network create alice-nw`
-- `git clone docker-Alice-Linux-x86`
-- cd into `docker-Alice-Linux-x86/alice`
+- `"docker network create alice-nw"`
+- `"git clone docker-Alice-Linux-x86"`
+- cd into `"docker-Alice-Linux-x86/alice"`
 - From now we call docker-Alice-Linux-x86/alice for just alice.
 - Edit `Timezone.env` to your needs.
-- cd into `alice/misc`
-  - `cp config.py.example config.py`
+- cd into `"alice/misc"`
+  - `"cp config.py".example config.py"`
   - Edit `config.py` for your needs.
   - you can also just use your own, if you already have one working.<br>
     But be aware of settings "mqttHost": "mqtt",
     "mqtt" means internal communication with docker mqtt.<br>
-    if you use a diffent mqtt host edit `'config.py'` and  `'snips.toml'` in alice/Docker/host_volumes/config.<br>
+    if you use a diffent mqtt host edit `"config.py"` and  `"snips.toml"` in alice/Docker/host_volumes/config.<br>
     read [More](#more) section first.
-- cp your `googlecredentials.json to` `alice/misc/googlecredentials.json`
+- cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"`
   - For now we only use Google ASR
-- cd to alice directory where the docker-compose.yml is.
-  - Enter **`bash install.sh`**
-    With `bash install.sh` you get the right UID and GID in the container.
+- cd into alice/Docker/host_volumes/config `"snips.toml.example snips.toml"`.
+- cd into alice directory where the docker-compose.yml is.
+  - Enter **`"bash install.sh"`**
+    With `"bash install.sh"` you get the right UID and GID in the container.
 
 - It will now build the images, on my Ubuntu it takes about 6-8 minutes from start to Alice is up and running.
-- When finished building the images you enter `docker-compose up -d`.
+- When finished building the images you enter `"docker-compose up -d"`.
   - You can use 1 or more terminals to enter the container.
-    You must be in 'alice' and then enter `docker-compose exec alice-amd bash`.
+    You must be in **alice**  and then enter `"docker-compose exec alice-amd bash"`.
 
-  - After you have entered the container you can start ProjectAlice with `'start-alice'`.
+  - After you have entered the container you can start ProjectAlice with `"start-alice"`.
     ```
-    - Start: 'start-alice'
-    - Stop: 'ctrl-c'
-    - Exit out of container with 'exit'
-    - Pull down the container with 'docker-compose down'
+    - Start: "start-alice"
+    - Stop: "ctrl-c"
+    - Exit out of container with "exit"
+    - Pull down the container with "docker-compose down"
     ```
-When you run the container manualy always use `'alice-start'` not `'venv/bin/python main.py'.`
+When you run the container manualy always use `"alice-start"` not `"venv/bin/python main.py".`
 
 
 ## More.
@@ -64,8 +73,8 @@ As you can see in the repository, there is also a companion mosquitto and nodere
 Using them with docker-Alice-Linux-x86 is a good idea. They then communicate on an internal network, while you also can reach them from the outside.
 **Remember always start mosquitto before anything else also before installing Alice.**
 
-Build 'mosquitto' with `bash install.sh` then you get the right UID and GID in the container.
-With 'nodered' you just use `nodered-start.sh`
+Build "mosquitto" with `"bash install.sh"` then you get the right UID and GID in the container.
+With "nodered" you just use `"nodered-start.sh"`
 Remember to edit Timezone.env to you needs for both.
 You can start/stop them with
   ```
@@ -82,11 +91,11 @@ ln -s $(pwd)/nodered-start.sh  ~/bin/nodered-start.sh
 ln -s $(pwd)/nodered-stop.sh  ~/bin/nodered-stop.sh
 ```
 
-Inside the container where you run 'start-alice' there are a few utilities eg.
+Inside the container where you run "start-alice" there are a few utilities eg.
 In the /home/pi/bin, "retrain-all, retrain-single, reload.py, alice-start".
 
 You can use `docker-compose exec alice-amd bash` in different ways eg.
-- `docker-compose exec alice-amd bash -c 'snips-watch -vvv'`
+- `docker-compose exec alice-amd bash -c "snips-watch -vvv"`
 
 or viewing the log outside the container.
   - cd alice/Docker/host_volumes
@@ -134,30 +143,24 @@ Then
     sudo systemctl restart snips-skill-respeaker-sat.service or
     sudo systemctl restart hermesledcontrol.service
 
-with 'bind = "default@mqtt"' the same as the Alice main unit you give her both mouth and ears. otherwise she's pretty deaf-mute.
+with "bind = "default@mqtt" the same as the Alice main unit you give her both mouth and ears. otherwise she"s pretty deaf-mute.
 
-That's that.
+That"s that.
 
 ## Troubleshooting.
-The first time you ask Alice for something and you get the error below, then do a 'ctrl-c' and a 'alice-start'.
+The first time you ask Alice for something and you get the error below, then do a "ctrl-c" and a "alice-start".
 Sometimes that error comes the first time you ask her to do something right after the installation.
 
-`[MqttManager] Session "647b2527-e4b1-49e2-ad99-e166d9e09a3f" ended with an unrecoverable error: Receives error from component Nlu: { error: Cannot use unknown intent 'greeting' in intents filter
+`[MqttManager] Session "647b2527-e4b1-49e2-ad99-e166d9e09a3f" ended with an unrecoverable error: Receives error from component Nlu: { error: Cannot use unknown intent "greeting" in intents filter
 , context: what time is it }`
 
 ## Reinstall.
-If you want to reinstall Alice then delete every thing in `alice/Docker/host_volumes/ProjectAlice/*`
-
-As a precaution do
+If you want to reinstall ProjectAlice then delete  `alice/Docker/host_volumes/ProjectAlice`
 ```
 cd into alice directory
-rm -rf Docker/host_volumes/ProjectAlice/*
-rm -rf Docker/host_volumes/ProjectAlice/.*
-mkdir -p Docker/host_volumes/ProjectAlice
-touch Docker/host_volumes/ProjectAlice/alice-not-installed
+rm -rf Docker/host_volumes/ProjectAlice
 docker-compose up
 ```
-The alice/Docker/host_volumes/ProjectAlice directory  with the file 'alice-not-installed' is mandatory for the installation to work.
 
 ## 📜 License.
 docker-Alice-Linux-x86 ships under GPLv3, it means you are free to use and redistribute the code but are not allowed to use any part of it under a closed license.

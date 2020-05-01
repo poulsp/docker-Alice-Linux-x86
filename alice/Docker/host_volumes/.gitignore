@@ -1,15 +1,18 @@
 
-/ProjectAlice/*
-!/ProjectAlice/alice-not-installed
+/misc/*
+!/misc/.gitignore
+!/misc/config.py.example
+
+/ProjectAlice
 
 
 /config/etc/*
 !/config/etc/mosquitto
 !/config/etc/supervisor
-
-/config/snips.conf
-/config/snips.conf-fra-P60
+#!/config/snips.toml.example
 /config/supervisord.conf
+
+/config/snips.conf-fra-P60
 
 /log/*.log
 /log/mosquitto/*
