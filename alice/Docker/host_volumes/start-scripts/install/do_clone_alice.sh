@@ -18,7 +18,7 @@ git clone https://github.com/project-alice-assistant/ProjectAlice.git
 
 
 cp -ar /misc/ProjectAlice /home/pi
-#TODO uncomment #rm
+
 rm -rf /misc/ProjectAlice
 
 cd /home/pi/ProjectAlice

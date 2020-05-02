@@ -13,20 +13,33 @@ echo "  |  Takes a little time.                                       |"
 echo '  +-------------------------------------------------------------+'
 echo ''
 
-##TODO While developing this comment out this 4 lines else mark them with comments.
-cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
-cd /misc && tar -xzf amazon.tgz -C /home/pi/ProjectAlice/var/cache/
-cd /misc && tar -xzf hotword-john.tgz -C /home/pi/ProjectAlice/trained/hotwords
-cd /misc && cp -a data.db /home/pi/ProjectAlice/system/database/
-
-
-# Copy skills
+# This file is for development of this repo only.
 if [ $DEVELOPMENT == true ]; then
-  if [ -e /misc/ProjectAliceSkills.tgz ] ; then
-    cd /misc &&  tar -xzf ProjectAliceSkills.tgz -C /home/pi/ProjectAlice/skills
+  if [ -e /misc/venv.tgz ] ; then
+    # created with  cd ProjectAlice &&  tar -czf venv.tgz venv
+    cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
   fi
+
+  if [ -e /misc/ProjectAliceSkills.tgz ] ; then
+    # created with  cd ProjectAlice &&  tar -czf ProjectAliceSkills.tgz skills
+    cd /misc &&  tar -xzf ProjectAliceSkills.tgz -C /home/pi/ProjectAlice
+  fi
+
+  if [ -e /misc/data.db ] ; then
+    cd /misc && cp -a data.db /home/pi/ProjectAlice/system/database/
+  fi
+
+  if [ -e /misc/hotwords.tgz ] ; then
+    # created with  cd ProjectAlice/trained &&  tar -czf hotwords.tgz hotwords
+    cd /misc && tar -xzf hotwords.tgz -C /home/pi/ProjectAlice/trained/hotwords
+  fi
+
   if [ -e /misc/trainingData.tgz ] ; then
     cd /misc && tar -xzf trainingData.tgz -C /home/pi/ProjectAlice/var/cache/nlu/trainingData
+  fi
+
+  if [ -e /misc/amazon.tgz ] ; then
+    cd /misc && tar -xzf amazon.tgz -C /home/pi/ProjectAlice/var/cache/
   fi
 fi
 
