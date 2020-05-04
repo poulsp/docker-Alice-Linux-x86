@@ -46,6 +46,7 @@ webrtcvad==2.0.10
 snips-nlu==0.20.2
 babel==2.7.0
 google-cloud-speech==1.3.1
+deepspeech==0.6.1
 
 ####
 #new 2020-04-23
