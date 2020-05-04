@@ -4,6 +4,7 @@
 #~/bin/SEDS/sed_config.sh
 #~/bin/SEDS/dndRepairAaliceCore.sh
 
+~/bin/SEDS/sed_MqttManager.sh
 ~/bin/SEDS/sed_SnipsServicesManager.sh
 ~/bin/SEDS/sed_SnipsNlu.sh
 ~/bin/SEDS/sed_webinterface.sh

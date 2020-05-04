@@ -41,6 +41,13 @@ if [ $DEVELOPMENT == true ]; then
   if [ -e /misc/amazon.tgz ] ; then
     cd /misc && tar -xzf amazon.tgz -C /home/pi/ProjectAlice/var/cache/
   fi
+
+  if [ -e /misc/deepspeech-0.6.1-models.tar.gz ] ; then
+    # Takes about 15 secs. to untar
+    echo 'untar deepspeech, Takes about 15 secs.'
+    mkdir -p /home/pi/ProjectAlice/trained/asr/deepspeech/en
+    cd /misc && tar -xzf deepspeech-0.6.1-models.tar.gz -C /home/pi/ProjectAlice/trained/asr/deepspeech/en
+  fi
 fi
 
 ~/bin/sed_all.sh
