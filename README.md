@@ -11,6 +11,8 @@ As this is work in progress. it will be a good idea to make an update occasional
 "git pull"
 ```
 
+Currently we check out #341b3fe79b1bc of Alice because for the moment there is problems with Satellites and it is under heavy development.
+
 Bla. bla bla
 
 Read [Installing](#Installing) but be sure also to read [More](#more).
