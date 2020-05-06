@@ -13,10 +13,7 @@ echo "  |  Takes a little time.                                       |"
 echo '  +-------------------------------------------------------------+'
 echo ''
 
-##TODO comment out this
-#cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
 
-##TODO uncomment this
 python3 -m venv ./venv
 venv/bin/pip install --upgrade pip
 
@@ -64,8 +61,6 @@ echo "$REQUIREMENTS_TEXT" > requirements.txt
 venv/bin/pip install -r requirements.txt
 venv/bin/python -m snips_nlu download en
 
-#TODO glem den lydfil
-#cp -ar /misc/amazon/ /home/pi/ProjectAlice//var/cache/
 
 ~/bin/sed_all.sh
 cd ~/ProjectAlice

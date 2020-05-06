@@ -15,11 +15,6 @@ echo ''
 
 # This file is for development of this repo only.
 if [ $DEVELOPMENT == true ]; then
-  if [ -e /misc/venv.tgz ] ; then
-    # created with  cd ProjectAlice &&  tar -czf venv.tgz venv
-    cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
-  fi
-
   if [ -e /misc/ProjectAliceSkills.tgz ] ; then
     # created with  cd ProjectAlice &&  tar -czf ProjectAliceSkills.tgz skills
     cd /misc &&  tar -xzf ProjectAliceSkills.tgz -C /home/pi/ProjectAlice
@@ -47,6 +42,60 @@ if [ $DEVELOPMENT == true ]; then
     echo 'untar deepspeech, Takes about 15 secs.'
     mkdir -p /home/pi/ProjectAlice/trained/asr/deepspeech/en
     cd /misc && tar -xzf deepspeech-0.6.1-models.tar.gz -C /home/pi/ProjectAlice/trained/asr/deepspeech/en
+  fi
+  if [ -e /misc/venv.tgz ] ; then
+    # created with  cd ProjectAlice &&  tar -czf venv.tgz venv
+    cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
+  else
+    cd /home/pi/ProjectAlice/
+    python3 -m venv ./venv
+    venv/bin/pip install --upgrade pip
+
+REQUIREMENTS_TEXT=$(cat <<'END_HEREDOC'
+pyalsaaudio==0.8.4
+python-dateutil==2.8.0
+paho-mqtt==1.5.0
+requests==2.21.0
+esptool==2.8
+pyserial==3.4
+pydub==0.23.1
+terminaltables==3.1.0
+click==7.0
+pyyaml==5.3
+boto3==1.10.46
+flask==1.1.1
+flask-classful==0.14.2
+flask-login==0.4.1
+flask-socketio==4.2.1
+googletrans==2.4.0
+bcrypt==3.1.7
+psutil==5.6.7
+numpy==1.16.2
+pyjwt==1.7.1
+importlib_metadata==1.6.0
+webrtcvad==2.0.10
+snips-nlu==0.20.2
+babel==2.7.0
+google-cloud-speech==1.3.1
+deepspeech==0.6.1
+PyAudio
+langdetect
+
+####
+#new 2020-04-23
+#PyAudio==0.2.11
+
+#uninstall
+#pyalsaaudio-0.8.4
+END_HEREDOC
+)
+
+    echo "$REQUIREMENTS_TEXT" > requirements.txt
+
+    venv/bin/pip install -r requirements.txt
+    venv/bin/python -m snips_nlu download en
+    tar -czf venv.tgz venv
+    mv venv.tgz /misc/venv.tgz
   fi
 fi
 
