@@ -6,7 +6,7 @@
 
 ~/bin/SEDS/sed_MqttManager.sh
 ~/bin/SEDS/sed_SnipsServicesManager.sh
-~/bin/SEDS/sed_SnipsNlu.sh
+~/bin/SEDS/sed_SnipsNlu.sh # needed replace rename to shutil.move
 ~/bin/SEDS/sed_webinterface.sh
 
 

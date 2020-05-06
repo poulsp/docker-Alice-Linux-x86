@@ -47,13 +47,15 @@ snips-nlu==0.20.2
 babel==2.7.0
 google-cloud-speech==1.3.1
 deepspeech==0.6.1
+PyAudio
+langdetect
 
 ####
 #new 2020-04-23
 #PyAudio==0.2.11
 
 #uninstall
-#pyalsaaudio
+#pyalsaaudio-0.8.4
 END_HEREDOC
 )
 
