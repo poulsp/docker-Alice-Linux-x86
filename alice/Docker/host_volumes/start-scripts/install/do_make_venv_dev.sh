@@ -80,6 +80,7 @@ google-cloud-speech==1.3.1
 deepspeech==0.6.1
 PyAudio
 langdetect
+watchdog
 
 ####
 #new 2020-04-23
@@ -94,8 +95,8 @@ END_HEREDOC
 
     venv/bin/pip install -r requirements.txt
     venv/bin/python -m snips_nlu download en
-    tar -czf venv.tgz venv
-    mv venv.tgz /misc/venv.tgz
+    #tar -czf venv.tgz venv
+    #mv venv.tgz /misc/venv.tgz
   fi
 fi
 

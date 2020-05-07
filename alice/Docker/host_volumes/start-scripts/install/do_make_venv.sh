@@ -46,6 +46,7 @@ google-cloud-speech==1.3.1
 deepspeech==0.6.1
 PyAudio
 langdetect
+watchdog
 
 ####
 #new 2020-04-23

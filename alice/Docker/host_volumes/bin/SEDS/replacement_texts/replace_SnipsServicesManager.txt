@@ -1,16 +1,32 @@
 			if cmd == 'start':
-				os.system(f"{service} > /dev/null 2>&1 &")
+				retValue = False
+				try:
+					retValue = subprocess.check_output(["pidof", f"{service}"])
+				except Exception as e:
+					retValue = False
+
+				if retValue == False:
+					os.system(f"{service} > /dev/null 2>&1 &")
+
 				self.logInfo(f"cmd: {cmd} - service: {service} ################")
 
 			elif  cmd == 'stop':
 				self.logInfo(f"cmd: {cmd} - service: {service} ################")
-				retValue = subprocess.check_output(["pidof", f"{service}"])
-				os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+				try:
+					retValue = subprocess.check_output(["pidof", f"{service}"])
+					os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+				except Exception as e:
+					pass
+
 			elif  cmd == 'restart':
 				self.logInfo(f"cmd: {cmd} - service: {service} ################")
-				retValue = subprocess.check_output(["pidof", f"{service}"])
-				os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+				try:
+					retValue = subprocess.check_output(["pidof", f"{service}"])
+					os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+				except Exception as e:
+					pass
 				os.system(f"{service} > /dev/null 2>&1 &")
+
 			else:
 				self.logInfo(f"cmd: {cmd} - service: {service} ################")
 				result = self.Commons.runRootSystemCommand(['systemctl', cmd, service])
