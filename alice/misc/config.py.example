@@ -77,7 +77,7 @@ settings = {
     "ttsType": "female",
     "ttsVoice": "Joanna",
     "useHLC": False,
-    "webInterfaceActive": False,
+    "webInterfaceActive": True,
     "webInterfacePort": 5000,
     "whisperWhenSleeping": True,
     "wifipassword":  ""

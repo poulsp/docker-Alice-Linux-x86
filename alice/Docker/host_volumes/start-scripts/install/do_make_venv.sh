@@ -62,6 +62,14 @@ echo "$REQUIREMENTS_TEXT" > requirements.txt
 venv/bin/pip install -r requirements.txt
 venv/bin/python -m snips_nlu download en
 
+# Be sure we start a new training session
+echo '{}' > /home/pi/ProjectAlice/var/cache/dialogTemplates/checksums.json
+rm /home/pi/ProjectAlice/var/cache/nlu/trainingData/*
+rm /home/pi/ProjectAlice/assistant/assistant.json
+rm /home/pi/ProjectAlice/assistant/nlu_engine/nlu_engine.json
+
+# Start a watchdog there react when the training is finished. Killing main.py
+/start-scripts/system_do_not_touch/shutdown_installer.py &
 
 ~/bin/sed_all.sh
 cd ~/ProjectAlice
@@ -102,5 +110,6 @@ echo "  |  Good luck!                                                           
 echo '  +-------------------------------------------------------------------------------------------------------------- ---+'
 echo ''
 
-sleep 2
-sudo kill -9 7
+# sleep 2
+# print("sudo kill -9 7")
+# sudo kill -9 7

@@ -19,7 +19,6 @@ services:
       init: true
       restart: unless-stopped # Possible values are : no, on-failure[:max-retry], always, unless-stopped
       #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
-      #command: tail -f /dev/null
       #command: bash /start-scripts/start-alice-automatic.sh
       command: bash /start-scripts/start-alice-manual.sh
 
@@ -46,8 +45,8 @@ services:
       ports:
         # uncomment ports if command is command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
         # Container internal mosquitto.
-#        - "1883:1883"
-#        - "1884:1884"
+        #- "1883:1883"
+        #- "1884:1884"
         - "5000:5000"
       networks:
        - alice-nw

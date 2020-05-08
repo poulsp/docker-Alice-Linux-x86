@@ -87,7 +87,7 @@ if [ ! -e ./Docker/host_volumes/config/snips.toml ]; then
   exit 0
 fi
 
-
+# start en watchdog evt.sæt et flag
 
 docker-compose up
 docker-compose down
