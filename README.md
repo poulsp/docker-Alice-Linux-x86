@@ -62,10 +62,11 @@ When you run the container manualy always use `"alice-start"` not `"venv/bin/pyt
 You can edit `docker-compose.yml`.
 Under commands you can set different start commands.
 ```
-# If using the mosquitto inside the container.
+# If using the mosquitto inside the container, is the same as starting it manually.
 # You must then edit snips.toml and config.py accordingly.
+# You must also uncomment "port 1883 of 1884" in docker-compose.yml.
+
 #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
-#command: tail -f /dev/null
 #command: bash /start-scripts/start-alice-automatic.sh
 command: bash /start-scripts/start-alice-manual.sh
 ```
