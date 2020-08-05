@@ -1,6 +1,8 @@
 # docker-Alice-Linux-x86.
 Let ProjectAlice run in a docker container.
 
+##### Don't use it at the moment/now. The repo needs to be updated because ProjectAlice has progressed since last update.
+
 I run it on a Ubuntu Destop.
 I have only used it with Google ASR and Amazon Polly TTS.
 
