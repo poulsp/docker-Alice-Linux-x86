@@ -1,9 +1,14 @@
 
-/misc/*
-!/misc/.gitignore
-!/misc/config.py.example
+/local/*
+!/local/.keep
+
+#/misc/*
+#!/misc/.gitignore
+#!/misc/config.py.example
 
 /ProjectAlice
+/ProjectAlice-work/
+/ProjectAlice.gg/
 
 
 /config/etc/*
@@ -14,6 +19,9 @@
 /config/supervisord.conf
 
 /config/snips.conf-fra-P60
+
+/config/pi.local/*
+!/config/pi.local/.keep
 
 /log/*.log
 /log/mosquitto/*

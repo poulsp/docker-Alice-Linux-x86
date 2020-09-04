@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
 
 		while isTraining:
-			time.sleep(5)
+			time.sleep(0.1)
 			if not checkTraining():
 				isTraining = False
 

@@ -14,11 +14,48 @@ echo '  +-------------------------------------------------------------+'
 echo ''
 
 
-python3 -m venv ./venv
-venv/bin/pip install --upgrade pip
+if [ $USE_PRE_BUILD_TGZ == true ]; then
+  if [ -e /misc/ProjectAliceSkills.tgz ] ; then
+    # created with  cd ProjectAlice &&  tar -czf ProjectAliceSkills.tgz skills
+    cd /misc &&  tar -xzf ProjectAliceSkills.tgz -C /home/pi/ProjectAlice
+  fi
+
+  if [ -e /misc/data.db ] ; then
+    cd /misc && cp -a data.db /home/pi/ProjectAlice/system/database/
+  fi
+
+  if [ -e /misc/hotwords.tgz ] ; then
+    # created with  cd ProjectAlice/trained &&  tar -czf hotwords.tgz hotwords
+    cd /misc && tar -xzf hotwords.tgz -C /home/pi/ProjectAlice/trained/hotwords
+  fi
+
+  if [ -e /misc/trainingData.tgz ] ; then
+    cd /misc && tar -xzf trainingData.tgz -C /home/pi/ProjectAlice/var/cache/nlu/trainingData
+  fi
+
+  if [ -e /misc/amazon.tgz ] ; then
+    cd /misc && tar -xzf amazon.tgz -C /home/pi/ProjectAlice/var/cache/
+  fi
+
+  if [ -e /misc/deepspeech-0.6.1-models.tar.gz ] ; then
+    # Takes about 15 secs. to untar
+    echo 'untar deepspeech, Takes about 15 secs.'
+    mkdir -p /home/pi/ProjectAlice/trained/asr/deepspeech/en
+    cd /misc && tar -xzf deepspeech-0.6.1-models.tar.gz -C /home/pi/ProjectAlice/trained/asr/deepspeech/en
+  fi
+fi
+
+if [ -e /misc/venv.tgz ] && [ $USE_PRE_BUILD_TGZ == true ]; then
+  # created with  cd ProjectAlice &&  time tar -czf venv.tgz venv
+  cd /misc && tar -xzf venv.tgz  -C /home/pi/ProjectAlice/
+else
+  cd /home/pi/ProjectAlice/
+  python3 -m venv ./venv
+  venv/bin/pip install --upgrade pip
 
 REQUIREMENTS_TEXT=$(cat <<'END_HEREDOC'
-pyalsaaudio==0.8.4
+#pyalsaaudio==0.8.4
+wheel==0.34.2
 python-dateutil==2.8.0
 paho-mqtt==1.5.0
 requests==2.21.0
@@ -28,7 +65,6 @@ pydub==0.23.1
 terminaltables==3.1.0
 click==7.0
 pyyaml==5.3
-boto3==1.10.46
 flask==1.1.1
 flask-classful==0.14.2
 flask-login==0.4.1
@@ -44,23 +80,29 @@ snips-nlu==0.20.2
 babel==2.7.0
 google-cloud-speech==1.3.1
 deepspeech==0.6.1
-PyAudio
-langdetect
+PyAudio==0.2.11
+langdetect==1.0.8
+ibm-watson==4.4.0
+pvporcupine==1.7.0
+mycroft-precise==0.3.0
 watchdog
-
-####
-#new 2020-04-23
-#PyAudio==0.2.11
+boto3==1.13.19
+toml==0.10.1
+markdown==3.2.2
+python-musicpd==0.4.4
 
 #uninstall
 #pyalsaaudio-0.8.4
 END_HEREDOC
 )
 
-echo "$REQUIREMENTS_TEXT" > requirements.txt
+  echo "$REQUIREMENTS_TEXT" > requirements-new.txt
 
-venv/bin/pip install -r requirements.txt
-venv/bin/python -m snips_nlu download en
+  venv/bin/pip install -r requirements-new.txt
+  venv/bin/python -m snips_nlu download en
+fi
+
+
 
 # Be sure we start a new training session
 echo '{}' > /home/pi/ProjectAlice/var/cache/dialogTemplates/checksums.json

@@ -1,6 +1,12 @@
 *~
 *.bak
 
+
+/Docker/Dockerfile-c42aff06eae5-latest-working
+/Docker/host_volumes/bin/reloader-obserwidgets.py
+/Docker/host_volumes/bin/reloader.py-old
+
+
 /config.py
 /googlecredentials.json
 

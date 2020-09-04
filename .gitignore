@@ -3,6 +3,11 @@
 *~
 *.bak
 
+/AliceYaml
+/alice/Docker/host_volumes/ProjectAlice-b3-gemme
+
+
+#/utils
 
 # # Byte-compiled / optimized / DLL files
 # __pycache__/

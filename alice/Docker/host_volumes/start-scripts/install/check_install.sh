@@ -1,7 +1,5 @@
 #!/bin/bash
 
-if [ -z ${DEVELOPMENT+x} ]; then DEVELOPMENT=false; fi
-
 
 if [ ! -e /misc/config.py ]; then
   echo
@@ -23,13 +21,10 @@ if [ ! -e /misc/googlecredentials.json ]; then
   echo
 fi
 
+
 if [ -d /home/pi/ProjectAlice ]; then
   if [ -z "$(ls -A -- '/home/pi/ProjectAlice')" ]; then
-    if [ $DEVELOPMENT == true ]; then
-      bash /start-scripts/install/do_clone_alice_dev.sh
-    else
-      bash /start-scripts/install/do_clone_alice.sh
-    fi
+    bash /start-scripts/install/do_clone_alice.sh
   fi
 fi
 
@@ -44,12 +39,6 @@ if [ ! -e /home/pi/ProjectAlice/credentials/googlecredentials.json ]; then
 fi
 
 
-if [ ! -e /home/pi/ProjectAlice/assistant ]; then
-  cd /home/pi/ProjectAlice
-  ln -sfn  trained/assistants/assistant_en assistant
-fi
-
-
 if [ ! -e /home/pi/ProjectAlice/var/cache/dialogTemplates/checksums.json ]; then
   mkdir -p /home/pi/ProjectAlice/var/cache/dialogTemplates
   echo '{}' > /home/pi/ProjectAlice/var/cache/dialogTemplates/checksums.json
@@ -57,15 +46,8 @@ fi
 
 
 if [ ! -d /home/pi/ProjectAlice/venv ]; then
-  # Install venv
-  if [ $DEVELOPMENT == true ]; then
-    bash /start-scripts/install/do_make_venv_dev.sh
-  else
-    bash /start-scripts/install/do_make_venv.sh
-  fi
+  bash /start-scripts/install/do_make_venv.sh
 
-  #cp -af /misc/config.py /home/pi/ProjectAlice/config.py
-  #cp -af /misc/googlecredentials.json /home/pi/ProjectAlice/credentials
   exit 0
 fi
 

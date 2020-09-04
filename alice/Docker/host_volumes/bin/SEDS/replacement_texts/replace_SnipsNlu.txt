@@ -1,0 +1,24 @@
+	def start(self):
+		super().start()
+		#self.Commons.runRootSystemCommand(['systemctl', 'start', 'snips-nlu'])
+		self.logInfo(f"####################### start snips-nlu")
+		try:
+			retValue = subprocess.check_output(["pidof", f"snips-nlu"])
+			os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+		except Exception as e:
+			pass
+		os.system(f"snips-nlu > /dev/null 2>&1 &")
+
+
+	def stop(self):
+		super().stop()
+		#self.Commons.runRootSystemCommand(['systemctl', 'stop', 'snips-nlu'])
+		self.logInfo(f"####################### stop snips-nlu")
+		try:
+			retValue = subprocess.check_output(["pidof", f"snips-nlu"])
+			self.logInfo(f"####################### retValue: {retValue.decode('utf-8')} ")
+			os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+		except Exception as e:
+			pass
+			self.logInfo(f"####################### Exception: {e} ")
+

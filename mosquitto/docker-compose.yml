@@ -71,6 +71,7 @@ services:
 
       networks:
         - alice-nw
+#        - rhasspy-nw
 
 #
 # [ networks definition ]
@@ -78,3 +79,6 @@ networks:
   alice-nw:
     external:
       name: alice-nw
+#  rhasspy-nw:
+#    external:
+#      name: rhasspy-nw

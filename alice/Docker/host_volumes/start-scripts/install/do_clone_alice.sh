@@ -12,20 +12,29 @@ echo "  |                                                             |"
 echo '  +-------------------------------------------------------------+'
 echo ''
 
-#TODO uncomment git clone
+#TODO Remove only for test 2020-06-22
 cd /misc
-git clone https://github.com/project-alice-assistant/ProjectAlice.git
+if [ ! -d /misc/ProjectAlice ] ; then
+  git clone https://github.com/project-alice-assistant/ProjectAlice.git
+fi
+
+
+#TODO uncomment git clone
+#cd /misc
+#git clone https://github.com/project-alice-assistant/ProjectAlice.git
 
 
 cp -ar /misc/ProjectAlice /home/pi
 
-rm -rf /misc/ProjectAlice
+#rm -rf /misc/ProjectAlice
 
 cd /home/pi/ProjectAlice
 git stash \
 && git stash clear \
 && git clean -df \
-&& git checkout 1.0.0-b1 \
-&& git checkout -b working-341b3fe79b1bc 341b3fe79b1bc
+&& git checkout 1.0.0-b3 \
+&& git pull \
+&& git stash clear \
+&& git clean -df \
+&& git checkout -b  3a2025990645-latest-workingb3 3a2025990645
 
-# 341b3fe79b1bc are the last before change of audio-server and more

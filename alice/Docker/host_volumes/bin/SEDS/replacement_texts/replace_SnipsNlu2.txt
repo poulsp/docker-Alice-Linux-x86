@@ -1,0 +1,8 @@
+			#self.Commons.runRootSystemCommand(['systemctl', 'restart', 'snips-nlu'])
+			self.logInfo(f"####################### restart snips-nlu")
+			try:
+				retValue = subprocess.check_output(["pidof", f"snips-nlu"])
+				os.system(f"kill -9 {retValue.decode('utf-8')}  > /dev/null 2>&1 &")
+			except Exception as e:
+				pass
+			os.system(f"snips-nlu > /dev/null 2>&1 &")

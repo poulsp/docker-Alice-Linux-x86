@@ -1,5 +1,5 @@
 
 Edit Timezone.env
 
-Build the docker image with bash install.sh
+Build the docker image with bash build.sh
 

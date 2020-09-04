@@ -1,3 +1,6 @@
+#  time docker build $BUILD_ARGS --force-rm --build-arg UID=$"$USERID" --build-arg GID=$"$GROUPID"  -t poulsp/alice-amd -f Docker/Dockerfile .
+#  time docker build  --force-rm  -t poulsp/alice-amd-new -f Docker/Dockerfile .
+
 FROM python:3.7.7-buster
 
 ARG UID=1000
@@ -10,6 +13,27 @@ ENV TERM=screen-256color
 
 ENV USER=pi
 ENV HOME=/home/$USER
+
+# wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-common_0.64.0_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-nlu_0.64.0_amd64.deb \
+# && wget https://debian.snips.ai/jessie/pool/s/sn/snips-asr-model-en-500MB_0.6.0-alpha.4_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-kaldi-atlas_0.26.1_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-hotword-model-heysnipsv4_0.64.0_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-hotword_0.64.0_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-asr_0.64.0_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-voice_0.64.0_amd64.deb \
+# && wget https://debian.snips.ai/stretch/pool/s/sn/snips-watch_0.64.0_amd64.deb
+
+# COPY ./Docker/snips-platform-common_0.64.0_amd64.deb /
+# COPY ./Docker/snips-platform-voice_0.64.0_amd64.deb /
+# COPY ./Docker/snips-watch_0.64.0_amd64.deb /
+# COPY ./Docker/snips-hotword-model-heysnipsv4_0.64.0_amd64.deb /
+# COPY ./Docker/snips-hotword_0.64.0_amd64.deb /
+# COPY ./Docker/snips-nlu_0.64.0_amd64.deb /
+# COPY ./Docker/snips-asr-model-en-500MB_0.6.0-alpha.4_amd64.deb /
+# COPY ./Docker/snips-kaldi-atlas_0.26.1_amd64.deb /
+# COPY ./Docker/snips-asr_0.64.0_amd64.deb /
+
 
 RUN set -xe \
     && cd / \
@@ -38,21 +62,9 @@ RUN set -xe \
         libpython3.7-dev \
         supervisor \
         alsa-utils \
-#RUN set -xe \
-    && echo "deb https://debian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list \
-    && apt-key adv --fetch-keys https://debian.snips.ai/5FFCD0DEB5BA45CD.pub \
-    && wget -q https://ftp-master.debian.org/keys/release-10.asc -O- | apt-key add - \
-    && apt-key adv --fetch-keys https://raspbian.snips.ai/531DD1A7B702B14D.pub \
-    && apt update \
-#RUN set -xe \
-    && DEBIAN_FRONTEND=noninteractive apt install -y  \
         libttspico0 \
         libttspico-utils \
         libatlas3-base=3.10.3-8 \
-#RUN set -xe \
-    # sysrequirements.txt
-    && DEBIAN_FRONTEND=noninteractive apt install -y --allow-unauthenticated \
-        #apt-transport-https \
         zip \
         unzip \
         mpg123 \
@@ -68,6 +80,8 @@ RUN set -xe \
         portaudio19-dev \
         python-pyaudio \
         python3-pyaudio \
+        libffi-dev \
+        python3-wheel \
         mosquitto \
         mosquitto-clients \
         libxml2-dev \
@@ -76,14 +90,38 @@ RUN set -xe \
         libatlas-base-dev \
         gfortran  \
         ffmpeg \
-#RUN set -xe \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    snips-platform-voice \
-    snips-makers-tts \
-    snips-watch \
-    snips-hotword-model-heysnipsv4\
+    && usermod -a -G audio ${USER} \
+    && cd / \
+    &&  wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-common_0.64.0_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-nlu_0.64.0_amd64.deb \
+    && wget https://debian.snips.ai/jessie/pool/s/sn/snips-asr-model-en-500MB_0.6.0-alpha.4_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-kaldi-atlas_0.26.1_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-hotword-model-heysnipsv4_0.64.0_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-hotword_0.64.0_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-asr_0.64.0_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-voice_0.64.0_amd64.deb \
+    && wget https://debian.snips.ai/stretch/pool/s/sn/snips-watch_0.64.0_amd64.deb \
+    && DEBIAN_FRONTEND=noninteractive apt install -y --allow-unauthenticated \
+        ./snips-platform-common_0.64.0_amd64.deb \
+        ./snips-platform-voice_0.64.0_amd64.deb \
+        ./snips-watch_0.64.0_amd64.deb \
+        ./snips-hotword-model-heysnipsv4_0.64.0_amd64.deb \
+        ./snips-hotword_0.64.0_amd64.deb \
+        ./snips-nlu_0.64.0_amd64.deb \
+        ./snips-asr-model-en-500MB_0.6.0-alpha.4_amd64.deb \
+        ./snips-kaldi-atlas_0.26.1_amd64.deb \
+        ./snips-asr_0.64.0_amd64.deb \
     && chown -R $USER:$USER /usr/share/snips \
     && chown -R $USER:$USER /var/lib/snips \
+    && rm /snips-platform-common_0.64.0_amd64.deb \
+    && rm /snips-nlu_0.64.0_amd64.deb \
+    && rm /snips-asr-model-en-500MB_0.6.0-alpha.4_amd64.deb \
+    && rm /snips-kaldi-atlas_0.26.1_amd64.deb \
+    && rm /snips-hotword-model-heysnipsv4_0.64.0_amd64.deb \
+    && rm /snips-hotword_0.64.0_amd64.deb \
+    && rm /snips-asr_0.64.0_amd64.deb \
+    && rm /snips-platform-voice_0.64.0_amd64.deb \
+    && rm /snips-watch_0.64.0_amd64.deb \
     && apt-get clean \
     && apt-get -y auto-remove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

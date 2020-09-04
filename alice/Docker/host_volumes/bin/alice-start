@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 if [ -e  /home/pi/.alice-started ]; then
   echo 'Alice already started'
   exit 0

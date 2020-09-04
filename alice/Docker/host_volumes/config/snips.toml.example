@@ -24,7 +24,8 @@ assistant = "/home/pi/ProjectAlice/assistant"
 [snips-asr]
 #no_fst_map = true
 #beam_size = 8
-#model = "/usr/share/snips/asr"
+###model = "/usr/share/snips/asr"
+model = "/usr/share/snips/snips-asr-model-en-500MB"
 #audio = ["+@mqtt"]
 #partial = false
 #partial_period_ms = 250
@@ -56,7 +57,7 @@ retry_count = 0
 #sites_in_same_group_default = false
 
 [snips-hotword]
-#model = ["/home/pi/ProjectAlice/trained/hotwords/snips_hotword=0.50"]
+model = ["/home/pi/ProjectAlice/trained/hotwords/snips_hotword/hey_snips=0.5"]
 #hotword_id = "default"
 #sensitivity = "0.5"
 #audio = ["+@mqtt"]
