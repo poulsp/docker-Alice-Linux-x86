@@ -1,33 +1,35 @@
-settings = {
+{
     "activeCountryCode": "US",
     "activeLanguage": "en",
     "adminPinCode": 1234,
-    "aliceAutoUpdate": False,
+    "advancedDebug": false,
+    "aliceAutoUpdate": false,
     "aliceUpdateChannel": "beta",
     "asoundConfig": "",
     "asr": "google",
     "asrFallback": "snips",
     "asrTimeout": 10,
     "autoPruneStoredData": 1000,
-    "autoReportSkillErrors": False,
-    "awsAccessKey": "",
+    "autoReportSkillErrors": false,
+    "awsAccessKey": "YOUR AWSACCESSKEY",
     "awsRegion": "eu-central-1",
-    "awsSecretKey":  "",
+    "awsSecretKey": "YOUR AWSSECRETKEY",
     "baseCurrency": "USD",
     "baseUnits": "metric",
-    "debug": True,
-    "delegateNluTraining": False,
-    "devMode": True,
+    "debug": true,
+    "delegateNluTraining": false,
+    "devMode": true,
     "deviceName": "default",
-    "disableSoundAndMic": True,
-    "enableDataStoring": True,
-    "githubToken":  "",
-    "githubUsername":  "",
+    "disableSoundAndMic": true,
+    "displaySystemUsage": false,
+    "enableDataStoring": true,
+    "githubToken": "YOUR GITHUBTOKEN",
+    "githubUsername": "YOUR NAME",
     "ibmCloudAPIKey": "",
     "ibmCloudAPIURL": "",
-    "keepASROffline": False,
-    "keepTTSOffline": False,
-    "mqttHost": "mqtt",
+    "keepASROffline": false,
+    "keepTTSOffline": false,
+    "mqttHost": "YOUR MOSQUITTO IP",
     "mqttPassword": "",
     "mqttPort": 1883,
     "mqttTLSFile": "",
@@ -38,17 +40,17 @@ settings = {
     "nonNativeSupportLanguage": "",
     "notUnderstoodRetries": 3,
     "onReboot": "",
-    "probabilityThreshold": 0.45,
-    "recordAudioAfterWakeword": False,
+    "probabilityThreshold": 0.343,
+    "recordAudioAfterWakeword": false,
     "sessionTimeout": 10,
-    "shortReplies": False,
-    "skillAutoUpdate": False,
+    "shortReplies": false,
+    "skillAutoUpdate": false,
     "skillsUpdateChannel": "beta",
-    "ssid": "XXX",
-    "stayCompletlyOffline": False,
+    "ssid": "YOUR SSID",
+    "stayCompletlyOffline": false,
     "supportedLanguages": {
         "en": {
-            "default": True,
+            "default": true,
             "defaultCountryCode": "US",
             "countryCodes": [
                 "US",
@@ -57,35 +59,39 @@ settings = {
             ]
         },
         "fr": {
-            "default": False,
+            "default": false,
             "defaultCountryCode": "FR",
             "countryCodes": [
                 "FR"
             ]
         },
         "de": {
-            "default": False,
+            "default": false,
             "defaultCountryCode": "DE",
             "countryCodes": [
                 "DE"
             ]
         },
         "it": {
-            "default": False,
+            "default": false,
             "defaultCountryCode": "IT",
             "countryCodes": [
                 "IT"
             ]
         }
     },
-    "timezone": "Europe/Zurich",
+    "timezone": "Europe/Copenhagen",
     "tts": "amazon",
+    "ttsFallback": "pico",
     "ttsLanguage": "en-US",
     "ttsType": "female",
     "ttsVoice": "Joanna",
-    "useHLC": False,
-    "webInterfaceActive": True,
+    "useHLC": false,
+    "uuid": "ba67e62d-cda6-4770-9cae-14a59c7d1031",
+    "wakewordEngine": "snips",
+    "wakewordSensitivity": 0.5,
+    "webInterfaceActive": true,
     "webInterfacePort": 5000,
-    "whisperWhenSleeping": True,
-    "wifipassword":  ""
+    "whisperWhenSleeping": true,
+    "wifipassword": "YOUR WIFI PASSWORD"
 }

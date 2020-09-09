@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# systemctl are placed in /bin
+# sudo systemctl start snips-hotword
+# clear;ps axu;sudo systemctl stop snips-hotword;ps axu
+
+PARAM1=$1
+APP=$2
+
+
+stopApp() {
+  #echo "Function stopApp $APP executed."
+  retValue=`pidof $APP`
+  if ! [ -z "$retValue" ]; then
+    #echo $"retValue: $retValue"
+    `kill -9 $retValue  > /dev/null 2>&1 &`
+  fi
+  return
+}
+
+
+startpApp() {
+  #echo "Function startpApp $APP executed."
+  su pi -g pi -c "$APP  > /dev/null 2>&1 &"
+  return
+}
+
+
+restartpApp() {
+  #echo "Function restartpApp $APP executed."
+  stopApp
+  startpApp
+  return
+}
+
+
+if [ $PARAM1 == 'stop' ]; then
+  CMD='stop'
+  stopApp
+
+elif [ $PARAM1 == 'start' ]; then
+  CMD='start'
+  startpApp
+
+elif [ $PARAM1 == 'restart' ]; then
+  CMD='restart'
+  restartpApp
+fi
+
+
+#echo $"CMD: $CMD"
+#echo $"$PARAM1 $APP"

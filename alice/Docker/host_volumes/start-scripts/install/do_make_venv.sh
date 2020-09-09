@@ -89,6 +89,7 @@ watchdog
 boto3==1.13.19
 toml==0.10.1
 markdown==3.2.2
+pympler==0.8
 python-musicpd==0.4.4
 
 #uninstall

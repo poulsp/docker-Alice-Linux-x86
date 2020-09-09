@@ -7,12 +7,14 @@
 /Docker/host_volumes/bin/reloader.py-old
 
 
+/config.json
 /config.py
 /googlecredentials.json
 
 
 /misc/*
 !/misc/.gitignore
+!/misc/config.json.example
 !/misc/config.py.example
 !/misc/alice-not-installed
 

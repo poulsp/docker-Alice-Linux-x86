@@ -14,6 +14,8 @@ ENV TERM=screen-256color
 ENV USER=pi
 ENV HOME=/home/$USER
 
+COPY ./Docker/systemctl /bin/systemctl
+
 # wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-common_0.64.0_amd64.deb \
 # && wget https://debian.snips.ai/stretch/pool/s/sn/snips-nlu_0.64.0_amd64.deb \
 # && wget https://debian.snips.ai/jessie/pool/s/sn/snips-asr-model-en-500MB_0.6.0-alpha.4_amd64.deb \
@@ -37,6 +39,7 @@ ENV HOME=/home/$USER
 
 RUN set -xe \
     && cd / \
+    && chmod 0755 /bin/systemctl \
     && sed -i "s/ main/ main non-free/g" /etc/apt/sources.list \
     && apt-get update && apt-get dist-upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y  sudo gnupg2 dirmngr apt-transport-https apt-utils \
@@ -129,6 +132,7 @@ RUN set -xe \
 
 RUN set -xe \
     && apt-get update
+
 
 
 USER $USER

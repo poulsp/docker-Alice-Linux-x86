@@ -28,5 +28,4 @@ sed -i "s/.*self.Commons.runRootSystemCommand(\['systemctl', 'restart', 'snips-n
 
 sed -i "/.*Indsæt replace_SnipsNlu2.txt/r ./replacement_texts/replace_SnipsNlu2.txt" ~/ProjectAlice/core/nlu/model/SnipsNlu.py
 
-#sed -i "178,178d" ~/ProjectAlice/core/nlu/model/SnipsNlu.py
 sed -i "177,177d" ~/ProjectAlice/core/nlu/model/SnipsNlu.py

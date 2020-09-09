@@ -11,7 +11,14 @@ As this is work in progress. it will be a good idea to make an update occasional
 "git pull"
 ```
 
-Currently we check out b3 SHA 3a2025990645 of Alice.
+Currently we check out b3 SHA ce10f0e8d71f of Alice.
+If you want to checkout a newer commit or latest after you have build the container and you have it up running, just cd into ProjectAlice and do:
+```
+"git stash"
+"git stash clear"
+"git checkout 1.0.0-b3"
+"git pull"
+```
 
 Bla. bla bla
 
@@ -20,7 +27,7 @@ Read [Installing](#Installing) but be sure also to read [More](#more).
 ## Installing.
 Have these three files in Your head from now. It will save you for troubles later on.
 ```
-"config.py" "snips.toml" and `"googlecredentials.json"
+"config.json" "snips.toml" and `"googlecredentials.json"
 ```
 Enter the following in a terminal:
 - `"docker network create alice-nw"`
@@ -29,8 +36,8 @@ Enter the following in a terminal:
 - From now we call docker-Alice-Linux-x86/alice for just alice.
 - Edit `Timezone.env` to your needs.
 - cd into `"alice/misc"`
-  - `"cp config.py".example config.py"`
-  - Edit `config.py` for your needs.
+  - `"cp config.json.example config.json"`
+  - Edit `config.json` for your needs.
 
 - Remember
   - "awsAccessKey": "",
@@ -40,7 +47,7 @@ Enter the following in a terminal:
 - you can also just use your own, if you already have one working.<br>
     But be aware of settings "mqttHost": "mqtt",
 "mqtt" means internal communication with docker mqtt, which is part of this repository.<br>
-    if you use a diffent mqtt host edit `"config.py"` in alice/misc and  `"snips.toml"` in alice/Docker/host_volumes/config.<br>
+    if you use a diffent mqtt host edit `"config.json"` in alice/misc and  `"snips.toml"` in alice/Docker/host_volumes/config.<br>
     read [More](#more) section first.
 - cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"`
   - For now we only use Google ASR with fallback to Snips ASR.
@@ -69,7 +76,7 @@ You can edit ``.
 Under commands you can set different start commands.
 ```
 # If using the mosquitto inside the container, is the same as starting it manually.
-# You must then edit snips.toml and config.py accordingly.
+# You must then edit snips.toml and config.json accordingly.
 # You must also uncomment "port 1883 of 1884" in docker-compose.yml.
 
 #command: /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
@@ -79,7 +86,7 @@ command: bash /start-scripts/start-alice-manual.sh
 During installation, command must be `command: bash /start-scripts/start-alice-manual.sh`
 
 As you can see in the repository, there is also a companion mosquitto and nodered docker build.
-Using them with docker-Alice-Linux-x86 is a good idea. They then communicate on an internal network, while you also can reach them from the outside.
+Using them with docker-Alice-Linux-x86 is a good idea.
 **Remember always start mosquitto before anything else also before installing Alice.**
 
 Build "mosquitto" with `"bash build.sh"` then you get the right UID and GID in the container.
@@ -171,7 +178,7 @@ Make a write about
 reloader.py is used to develop skills and other things much faster than normal stop/start of ProjectAlice.
 What it does is monitor the folder (a watchdog) in which you are developing.
 When a change occurs, for example you press save(ctrl-s) reloader.py will then automatically restart ProjectAlice. If it is a Dialog Template json you change, Alice will begin to retrain.
-When you not develop to the web interface, it will pay off to set "webInterfaceActive": False in config.py
+When you not develop to the web interface, it will pay off to set "webInterfaceActive": False in config.json
 With out active web interface i takes on my machine about 0.9 seconds to restart ProjectAlice and about 14 seconds to retrain the 5 core skills.
 
 Make a write about
