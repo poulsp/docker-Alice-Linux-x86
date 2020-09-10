@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
+~/bin/SEDS/sed_webinterface.sh
 
 ##~/bin/SEDS/sed_common.sh
 #~/bin/SEDS/sed_SnipsNlu.sh # needed For Docker
 #~/bin/SEDS/sed_SnipsAsr.sh # needed For Docker
 
-#~/bin/SEDS/sed_webinterface.sh
 #~/bin/SEDS/sed_SkillManager.sh
 
 #~/bin/SEDS/sed_DialogManager.sh
