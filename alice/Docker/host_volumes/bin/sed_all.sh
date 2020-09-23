@@ -3,6 +3,7 @@
 
 ~/bin/SEDS/sed_webinterface.sh
 ~/bin/SEDS/sed_webinterface_colors.sh
+~/bin/SEDS/sed_MqttManager.sh
 
 
 ##~/bin/SEDS/sed_common.sh
@@ -17,7 +18,6 @@
 ### ~/bin/SEDS/sed_config.sh
 ### ~/bin/SEDS/dndRepairAaliceCore.sh
 
-#~/bin/SEDS/sed_MqttManager.sh
 
 ### eksiterer ikke i latest
 ###~/bin/SEDS/sed_SnipsServicesManager.sh

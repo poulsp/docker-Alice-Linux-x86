@@ -54,13 +54,11 @@ if [ -d Docker/host_volumes/ProjectAlice ] ; then
 fi
 
 
-#if [ ! -e ./misc/config.py ]; then
 if [ ! -e ./misc/config.json ]; then
   clear
   echo
-  echo -e "  \033[41;5;2m\033[1;37;228m alice/misc/config.py dont exist  \033[0m"
+  echo -e "  \033[41;5;2m\033[1;37;228m alice/misc/config.json dont exist  \033[0m"
   echo '  cd into alice/misc.'
-  #echo '  Copy config.py.example to config.py.'
   echo '  Copy config.json.example to config.json.'
   echo '  Edit config.json for your needs.'
   echo

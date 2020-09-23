@@ -68,7 +68,7 @@ pyyaml==5.3
 flask==1.1.1
 flask-classful==0.14.2
 flask-login==0.4.1
-flask-socketio==4.2.1
+#flask-socketio==4.2.1
 googletrans==2.4.0
 bcrypt==3.1.7
 psutil==5.6.7

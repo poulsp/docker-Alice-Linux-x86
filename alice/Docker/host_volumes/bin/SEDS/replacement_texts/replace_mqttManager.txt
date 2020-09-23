@@ -1,0 +1,11 @@
+	def toggleFeedbackSounds(self, state='On'):
+		"""
+		Activates or disables the feedback sounds, on all devices
+		:param state: str On or off
+		"""
+		#Changed by PS. includeMain=True to includeMain=False
+		deviceList = [device.uid for device in self.DeviceManager.getAliceTypeDevices(connectedOnly=True, includeMain=False) if device]
+
+		for siteId in deviceList:
+			publish.single(constants.TOPIC_TOGGLE_FEEDBACK.format(state.title()), payload=json.dumps({'siteId': siteId}))
+

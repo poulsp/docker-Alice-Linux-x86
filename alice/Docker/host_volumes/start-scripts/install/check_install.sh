@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-if [ ! -e /misc/config.py ]; then
+if [ ! -e /misc/config.json ]; then
   echo
-  echo 'alice/misc/config.py dont exist!'
+  echo 'alice/misc/config.json dont exist!'
   echo 'cd into alice/misc.'
-  echo 'Copy config.py.example to config.py.'
-  echo 'Edit config.py for your needs.'
+  echo 'Copy config.json.example to config.json.'
+  echo 'Edit config.json for your needs.'
   echo
   exit 0
 fi
@@ -29,8 +29,8 @@ if [ -d /home/pi/ProjectAlice ]; then
 fi
 
 
-if [ ! -e /home/pi/ProjectAlice/config.py ]; then
-  cp -af /misc/config.py /home/pi/ProjectAlice/config.py
+if [ ! -e /home/pi/ProjectAlice/config.json ]; then
+  cp -af /misc/config.json /home/pi/ProjectAlice/config.json
 fi
 
 
