@@ -69,7 +69,7 @@ Enter the following in a terminal:
     - Pull down the container with "docker-compose down"
     ```
 When you run the container manualy always use `"alice-start"` not `"venv/bin/python main.py".`
-
+The first time you "start-alice" do a Stop: "ctrl-c" and type: `retrain-all` then start/stop a couple a times.
 
 ## More.
 You can edit ``.
