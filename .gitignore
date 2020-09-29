@@ -3,9 +3,6 @@
 *~
 *.bak
 
-/AliceYaml
-/alice/Docker/host_volumes/ProjectAlice-b3-gemme
-
 
 #/utils
 

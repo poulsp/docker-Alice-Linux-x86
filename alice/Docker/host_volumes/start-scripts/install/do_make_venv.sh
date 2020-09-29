@@ -34,6 +34,7 @@ if [ $USE_PRE_BUILD_TGZ == true ]; then
   fi
 
   if [ -e /misc/amazon.tgz ] ; then
+    # created with   cd ProjectAlice/var/cache && tar -czf amazon.tgz amazon
     cd /misc && tar -xzf amazon.tgz -C /home/pi/ProjectAlice/var/cache/
   fi
 

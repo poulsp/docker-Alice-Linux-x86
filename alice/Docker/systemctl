@@ -40,7 +40,8 @@ if [ $PARAM1 == 'stop' ]; then
 
 elif [ $PARAM1 == 'start' ]; then
   CMD='start'
-  startpApp
+  #startpApp
+  restartpApp
 
 elif [ $PARAM1 == 'restart' ]; then
   CMD='restart'

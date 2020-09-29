@@ -11,7 +11,7 @@ As this is work in progress. it will be a good idea to make an update occasional
 "git pull"
 ```
 
-Currently we check out b3 SHA 8fb82260d40d of Alice.
+Currently we check out b3 SHA 76948c48fa8a of Alice.
 If you want to checkout a newer commit or latest after you have build the container and you have it up running, just cd into ProjectAlice and do:
 ```
 "git stash"
@@ -69,7 +69,6 @@ Enter the following in a terminal:
     - Pull down the container with "docker-compose down"
     ```
 When you run the container manualy always use `"alice-start"` not `"venv/bin/python main.py".`
-The first time you "start-alice" do a Stop: "ctrl-c" and type: `retrain-all` then start/stop a couple a times.
 
 ## More.
 You can edit ``.
