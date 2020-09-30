@@ -22,7 +22,7 @@ If you want to checkout a newer commit or latest after you have build the contai
 
 Bla. bla bla
 
-Read [Installing](#Installing) but be sure also to read [More](#more).
+Read [Requirements](#Requirements), [Installing](#Installing) but be sure also to read [More](#more).
 
 ## Installing.
 Have these three files in Your head from now. It will save you for troubles later on.
@@ -45,8 +45,6 @@ Enter the following in a terminal:
      "awsSecretKey": "
 
 - you can also just use your own, if you already have one working.<br>
-    But be aware of settings "mqttHost": "mqtt",
-"mqtt" means internal communication with docker mqtt, which is part of this repository.<br>
     if you use a diffent mqtt host edit `"config.json"` in alice/misc and  `"snips.toml"` in alice/Docker/host_volumes/config.<br>
     read [More](#more) section first.
 - cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"`
@@ -120,8 +118,7 @@ like you do when you edit your skills from outside the container using the edito
 - cd alice/Docker/host_volumes/ProjectAlice/skills/YourSkill
 - Edit YourSkill
 
-To understand this container creation and build look inside the docker-compose.yml, Docker/host_volumes/start-scripts/- do_clone_alice.sh and
-do_make_venv.sh
+To understand this container creation and build look inside the docker-compose.yml, Docker/host_volumes/start-scripts/- do_clone_alice.sh, do_make_venv.sh and build.sh.
 
 ## Requirements.
 [Docker](https://www.docker.com/) installed.
@@ -194,7 +191,7 @@ The misc/... en.json can then contain the mixed eg. Danish and English text whil
 Make a tts polly that can handle {{lang:da-DK}} and possibly {{lang:en-US}}
 Save in cache DK otherwise save in US/GB/AU.
 
-My self I use the combination `docker-compose up; docker-compose down` in one terminal, and then further terminals for the other tasks.
+I use the combination `docker-compose up; docker-compose down` in one terminal, and then further terminals for the other tasks.
 
 ## Troubleshooting.
 The first time you ask Alice for something and you get the error below, then do a "ctrl-c" and a "alice-start".
@@ -213,7 +210,10 @@ docker-compose up
 ```
 
 ## Experimental.
-I am experimenting with a webcam mic and usb-speakers. Therefore there is a asound.conf in config.
+I am experimenting with a webcam mic and usb-speakers. Therefore there is a asound.conf.example in Docker/host_volumes/config.
+If you want to use it to run audio in and audio out on the host.
+Set `"disableSoundAndMic": false` in config.json and copy asound.conf.example to asound.conf and edit it.
+
 
 ## 📜 License.
 docker-Alice-Linux-x86 ships under GPLv3, it means you are free to use and redistribute the code but are not allowed to use any part of it under a closed license.

@@ -2,11 +2,18 @@
 /local/*
 !/local/.keep
 
+
+bin/SEDS-disabled/SEDS-disabled2/SEDS/replacement_texts-diabled/
+config/asound.conf
+config/snips.toml.save
+
 #/misc/*
 #!/misc/.gitignore
 #!/misc/config.py.example
 
-/ProjectAlice
+/ProjectAlice*
+/ProjectAlice-work/
+/ProjectAlice.gg/
 
 
 /config/etc/*

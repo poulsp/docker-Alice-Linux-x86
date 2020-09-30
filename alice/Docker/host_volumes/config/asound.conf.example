@@ -1,0 +1,59 @@
+# This asound.conf is for my experiments using Docker-alice with internal sound card on my AMD-64 PC.
+
+# Inside the container you can set the mixer volume with alsamixer or amixer.
+# Set mixer volume with alsamixer.
+#  alsamixer -c cardNo
+#
+# Set mixer volume with amixer.
+#  amixer -M -c cardNo -- sset "control name" 27%
+#  E.g on my host I use
+#  amixer -M -c 2 -- sset Speaker 27%
+# You can see then "control name" either in alsamixer or with amixer  -c cardNo scontrols
+
+# store/restore the volume with sudo alsactl store/retore.
+
+# # hw:number are from aplay -l and arecord -l
+# E.g. My speaker is a usb speaker.
+#  card 2: Device [USB Audio Device], device 0: USB Audio [USB Audio]
+#
+# and my recorder are a Logitech webcam.
+# card 3: U0x46d0x825 [USB Device 0x46d:0x825], device 0: USB Audio [USB Audio]
+
+
+#Test it with
+# arecord -t wav [-D|--device=NAME] [-f|--format=FORMAT] [-c|--channels=#]  [-r|--rate=#<Hz>] out.wav
+
+## -D can also be -Dhw:0
+# arecord -t wav -Dhw:U0x46d0x825 -f S16_LE -c 1 -r 16000 out.wav
+# aplay -Dplughw:2,0  out.wav
+# or just aplay out.wav
+
+
+
+pcm.!default {
+   type asym
+   capture.pcm "aliceMic"
+   playback.pcm "aliceSpeaker"
+}
+
+pcm.aliceMic {
+   type plug
+   slave {
+      pcm "hw:U0x46d0x825"
+   }
+}
+pcm.aliceSpeaker {
+   type plug
+   slave {
+      pcm "hw:2,0"
+   }
+}
+
+## an extra usb soundcard
+#pcm.snapcastSpeaker {
+#   type plug
+#   slave {
+#      pcm "hw:card_number"
+#   }
+#}
+
