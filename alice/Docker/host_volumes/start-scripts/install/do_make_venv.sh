@@ -54,54 +54,21 @@ else
   python3 -m venv ./venv
   venv/bin/pip install --upgrade pip
 
-REQUIREMENTS_TEXT=$(cat <<'END_HEREDOC'
-#pyalsaaudio==0.8.4
-wheel==0.34.2
-python-dateutil==2.8.0
-paho-mqtt==1.5.0
-requests==2.21.0
-esptool==2.8
-pyserial==3.4
-pydub==0.23.1
-terminaltables==3.1.0
-click==7.0
-pyyaml==5.3
-flask==1.1.1
-flask-classful==0.14.2
-flask-login==0.4.1
-#flask-socketio==4.2.1
-googletrans==2.4.0
-bcrypt==3.1.7
-psutil==5.6.7
-numpy==1.16.2
-pyjwt==1.7.1
-importlib_metadata==1.6.0
-webrtcvad==2.0.10
-snips-nlu==0.20.2
-babel==2.7.0
-google-cloud-speech==1.3.1
-deepspeech==0.6.1
-PyAudio==0.2.11
-langdetect==1.0.8
-ibm-watson==4.4.0
-pvporcupine==1.7.0
-mycroft-precise==0.3.0
-watchdog
-boto3==1.13.19
-toml==0.10.1
-markdown==3.2.2
-pympler==0.8
-Flask-Cors==3.0.9
-python-musicpd==0.4.4
 
-#uninstall
-#pyalsaaudio-0.8.4
+REQUIREMENTS_TEXT=$(cat <<'END_HEREDOC'
+snips-nlu==0.20.2
+watchdog
+beautifulsoup4==4.9.3
+lxml==4.5.2
+python-musicpd==0.4.4
 END_HEREDOC
 )
+
 
   echo "$REQUIREMENTS_TEXT" > requirements-new.txt
 
   venv/bin/pip install -r requirements-new.txt
+  venv/bin/pip install -r requirements.txt
   venv/bin/python -m snips_nlu download en
 fi
 

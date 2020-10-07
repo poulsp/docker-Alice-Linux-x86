@@ -10,13 +10,14 @@ As this is work in progress. it will be a good idea to make an update occasional
 "git stash clear"
 "git pull"
 ```
+Currently we check out the master branch. The master branch is what formerly was 1.0.0-b3. It's fairly stable release.
 
-Currently we check out b3 SHA 76948c48fa8a of Alice.
-If you want to checkout a newer commit or latest after you have build the container and you have it up running, just cd into ProjectAlice and do:
+If you want to checkout a newer branch, just cd into ProjectAlice and do:
 ```
 "git stash"
 "git stash clear"
-"git checkout 1.0.0-b3"
+"git checkout <branch>"
+"e.g git checkout 1.0.0-b4"
 "git pull"
 ```
 
@@ -137,8 +138,8 @@ Install of docker-compose:
   && sudo pip3 install docker-compose
 
 ## Satellite.
-The container are without mic and speaker.
-So you have to use a satellite.
+To use a satellite.
+The container can use mic and speaker. See [Experimental](#Experimental)
 
 Alice first welcome you based on her creation of a new database.
 It is best to start there with an old snips satellite.
@@ -153,7 +154,7 @@ sudo nano /etc/snips.toml and edit:
     mqtt = "<YOUR_DESKTOP_IP>:1883"
 
     [snips-audio-server]
-    bind = "default@mqtt"
+    bind = "UUID-from-config.json@mqtt"
 
 Then
 >
@@ -162,7 +163,24 @@ Then
     sudo systemctl restart snips-skill-respeaker-sat.service or
     sudo systemctl restart hermesledcontrol.service
 
-with "bind = "default@mqtt" the same as the Alice main unit you give her both mouth and ears. otherwise she"s pretty deaf-mute.
+with "bind = "UUID-from-config.json@mqtt" the same as the Alice main unit you give her both mouth and ears. otherwise she"s pretty deaf-mute.
+
+##### Using ProjectSatellite.
+If you prefer to use ProjectAliceSatellite.
+You simply use the text input widget, type "Add a satelite in the office" and it pairs. Then you have a fully working sats.
+check /etc/snips.toml and ~/ProjectAlice/config.py: for the "UUID-from-config.json" from ProjectAlice master unit.
+
+##### Troubleshooting ProjectSatellite.
+If you use ProjectAliceSatellite then you should temporary insert `network_mode: "host"`and comment out the two lines starting with `networks:` in docker-compose.yml
+```
+    network_mode: "host"
+    # networks:
+    #   - alice-nw
+```
+otherwise there could be difficulties with the UDP broadcasting that Alice use to add new satellites. Restart container.
+
+Once the satellite is set up and running then go back and comment out `network_mode: "host"` and restore `networks:` settings. Restart container.
+Thanks to @Maniac.
 
 That"s that.
 
@@ -224,3 +242,4 @@ Project Alice belongs to the [Project Alice Organisation](https://docs.projectal
 I have made this repo for my self, so I am able to develop skills in an easy and quick way  and at the same time I can tamper with ProjectAlice.
  This is work in progress and the code is as it is.
  Use it at your own risk/fun.
+

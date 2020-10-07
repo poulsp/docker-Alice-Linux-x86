@@ -29,12 +29,13 @@ cp -ar /misc/ProjectAlice /home/pi
 #rm -rf /misc/ProjectAlice
 
 cd /home/pi/ProjectAlice
-git stash \
-&& git stash clear \
-&& git clean -df \
-&& git checkout 1.0.0-b3 \
-&& git pull \
-&& git stash clear \
-&& git clean -df \
-&& git checkout -b  76948c48fa8a-latest-workingb3 76948c48fa8a
-
+# git stash \
+# && git stash clear \
+# && git clean -df \
+# && git checkout 1.0.0-b3 \
+# && git pull \
+# && git stash clear \
+# && git clean -df \
+# && git checkout -b  76948c48fa8a-latest-workingb3 76948c48fa8a
+# We use master now.
+git pull

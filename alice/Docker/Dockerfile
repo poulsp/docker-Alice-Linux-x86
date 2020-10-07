@@ -14,6 +14,11 @@ ENV TERM=screen-256color
 ENV USER=pi
 ENV HOME=/home/$USER
 
+ENV RELEASE="0.21.0"
+ENV URL="https://github.com/badaix/snapcast/releases/download/v${RELEASE}/snapserver_${RELEASE}-1_amd64.deb"
+ENV snapServerDeb="snapserver_${RELEASE}-1_amd64.deb"
+
+
 COPY ./Docker/systemctl /bin/systemctl
 
 # wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-common_0.64.0_amd64.deb \
@@ -125,6 +130,18 @@ RUN set -xe \
     && rm /snips-asr_0.64.0_amd64.deb \
     && rm /snips-platform-voice_0.64.0_amd64.deb \
     && rm /snips-watch_0.64.0_amd64.deb \
+    && DEBIAN_FRONTEND=noninteractive apt install -y  \
+        avahi-daemon bind9-host geoip-database libavahi-client3 libavahi-common-data libavahi-common3 \
+        libavahi-core7 libbind9-161 libdaemon0 libdns1104 libfstrm0 libgeoip1 libisc1100 libisccc161 libisccfg163 \
+        liblmdb0 liblwres161 libnss-mdns libprotobuf-c1 \
+    && cd / \
+    && wget ${URL} \
+    && dpkg -i ${snapServerDeb} \
+    && apt-get -f install -y \
+    && rm ${snapServerDeb} \
+    && systemctl stop snapserver  \
+    && sed -i "s/\.*source = pipe:\/\/\/tmp\/snapfifo?name=default/source = pipe:\/\/\/dev\/shm\/snapfifo?name=default/" /etc/snapserver.conf \
+    && sed -i "s/\.*stream = pipe:\/\/\/tmp\/snapfifo?name=default/stream = pipe:\/\/\/dev\/shm\/snapfifo?name=default/" /etc/snapserver.conf \
     && apt-get clean \
     && apt-get -y auto-remove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -132,7 +149,6 @@ RUN set -xe \
 
 RUN set -xe \
     && apt-get update
-
 
 
 USER $USER

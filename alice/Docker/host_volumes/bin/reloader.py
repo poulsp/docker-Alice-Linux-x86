@@ -14,6 +14,7 @@ import subprocess
 import time
 from threading import Timer
 import requests
+import json
 
 try:
 	from watchdog.observers import Observer
@@ -24,16 +25,16 @@ except ModuleNotFoundError:
 from watchdog.events import PatternMatchingEventHandler
 
 sys.path.append('/home/pi/ProjectAlice')
-from config import(settings)
+#from config import(settings)
 
 #-----------------------------------------------
 class ProgramKilled(Exception):
-  pass
+	pass
 
 
 #-----------------------------------------------
 def signal_handler(signum, frame):
-    raise ProgramKilled
+		raise ProgramKilled
 
 signal.signal(signal.SIGTERM, signal_handler)
 signal.signal(signal.SIGINT, signal_handler)
@@ -49,7 +50,9 @@ class Reloader():
 		self.timerStartAlice = None
 		self.isInStartAlice = False
 		#self.AliceConfigs = settings
-		self.webInterfaceActive = settings["webInterfaceActive"]
+		self.readConfig()
+		self.webInterfaceActive = self.getConfig('webInterfaceActive')
+		#self.webInterfaceActive = settings["webInterfaceActive"]
 		# __pycache__
 		self.patterns = "*"
 		self.ignore_patterns = ""
@@ -73,6 +76,16 @@ class Reloader():
 		self.observer = Observer()
 		self.observer.schedule(self.eventHandler, self.path, recursive=self.recursive)
 		self.observer.start()
+
+#-----------------------------------------------
+	def readConfig(self):
+		with open('config.json') as config_file:
+				self._config = json.load(config_file)
+
+
+	#-----------------------------------------------
+	def getConfig(self, configName: str):
+		return self._config[configName]
 
 
 	#-----------------------------------------------
@@ -145,7 +158,7 @@ class Reloader():
 		payload = {'': ''}
 		files = []
 		headers = {
-		  'auth': self.authToken
+			'auth': self.authToken
 		}
 
 		response = requests.request("GET", url, headers=headers, data = payload, files = files)
@@ -164,7 +177,7 @@ if __name__ == "__main__":
 		print()
 		sys.exit(1)
 
-  #TODO Read AuthToken from file. If we want to use it.
+	#TODO Read AuthToken from file. If we want to use it.
 	AuthToken = ""
 	reloader = Reloader(os.path.basename(sys.argv[1]), AuthToken)
 

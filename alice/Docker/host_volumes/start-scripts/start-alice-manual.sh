@@ -1,6 +1,10 @@
 
 time /start-scripts/install/check_install.sh
 
+if [ -e /bin/systemctl ]; then
+  sudo /bin/systemctl restart snapserver
+fi
+
 echo
 echo "Container Running."
 echo "If started with 'docker-compose up' without detaching, press 'ctrl-c' to stop."
