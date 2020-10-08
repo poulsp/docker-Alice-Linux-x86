@@ -4,7 +4,7 @@
     "adminPinCode": 1234,
     "advancedDebug": false,
     "aliceAutoUpdate": false,
-    "aliceUpdateChannel": "beta",
+    "aliceUpdateChannel": "master",
     "asoundConfig": "",
     "asr": "google",
     "asrFallback": "snips",
@@ -45,7 +45,7 @@
     "sessionTimeout": 10,
     "shortReplies": false,
     "skillAutoUpdate": false,
-    "skillsUpdateChannel": "beta",
+    "skillsUpdateChannel": "master",
     "ssid": "YOUR SSID",
     "stayCompletlyOffline": false,
     "supportedLanguages": {

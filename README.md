@@ -51,6 +51,7 @@ Enter the following in a terminal:
 - cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"`
   - For now we only use Google ASR with fallback to Snips ASR.
 - cd into alice/Docker/host_volumes/config `"snips.toml.example snips.toml"`.
+  - edit `snips.toml`
 - cd back into alice root directory where the docker-compose.yml is.
   - Enter **`"bash build.sh"`**
     With `"bash build.sh"` you get the right UID and GID in the container.
@@ -192,7 +193,7 @@ Make a write about
 reloader.py is used to develop skills and other things much faster than normal stop/start of ProjectAlice.
 What it does is monitor the folder (a watchdog) in which you are developing.
 When a change occurs, for example you press save(ctrl-s) reloader.py will then automatically restart ProjectAlice. If it is a Dialog Template json you change, Alice will begin to retrain.
-When you not develop to the web interface, it will pay off to set "webInterfaceActive": False in config.json
+When you not develop to the web interface, it will pay off to set "webInterfaceActive": true in config.json
 With out active web interface i takes on my machine about 0.9 seconds to restart ProjectAlice and about 14 seconds to retrain the 5 core skills.
 
 Make a write about
