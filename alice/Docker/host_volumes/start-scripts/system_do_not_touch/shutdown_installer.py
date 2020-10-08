@@ -17,6 +17,43 @@ import os
 import time
 
 
+def printEndScreen():
+		END_SCREEN = r"""
+		clear
+		echo ''
+		echo '  +-----------------------------------------------------------------------------------------------------------------+'
+	  echo "  | \e[48;5;2m\e[38;5;228m                                             Docker Alice x86                                                  \e[39m\e[49m |"
+		echo '  |-----------------------------------------------------------------------------------------------------------------|'
+		echo '  |                                                                                                                 |'
+		echo "  |  Creation of venv finish!                                                                                       |"
+		echo "  | First time traning is acomplished. Congratulation!                                                              |"
+		echo "  |                                                                                                                 |"
+		echo "  |                                                                                                                 |"
+		echo "  | The container are ready to use.                                                                                 |"
+		echo "  |                                                                                                                 |"
+		echo '  |-----------------------------------------------------------------------------------------------------------------|'
+		echo "  |                                                                                                                 |"
+		echo "  |  You can now run the container with:                                                                            |"
+		echo "  |    docker-compose up -d                                                                                         |"
+		echo "  |                                                                                                                 |"
+		echo "  |  and pull it down with:                                                                                         |"
+		echo "  |    docker-compose down                                                                                          |"
+		echo "  |                                                                                                                 |"
+		echo "  |  or use docker-compose up;docker-compose down and 'ctrl-c' to stop the running container.                       |"
+		echo "  |                                                                                                                 |"
+		echo "  |                                                                                                                 |"
+		echo "  |  Go inside the container with 'docker-compose exec alice-amd bash'                                              |"
+		echo "  |  and 'alice'start'.                                                                                               |"
+		echo "  |                                                                                                                 |"
+		echo "  |  The system is now at your service.                                                                             |"
+		echo "  |  Good luck!                                                                                                     |"
+		echo '  +-------------------------------------------------------------------------------------------------------------- ---+'
+		echo ''
+		"""
+
+		os.system(END_SCREEN)
+
+
 #-----------------------------------------------
 def getProcesses() -> dict:
 		"""Return a dict of processes."""
@@ -79,6 +116,7 @@ if __name__ == "__main__":
 			raise Exception(f'Something went wrong, Wrong pid: {pid}')
 
 
+		printEndScreen()
 		print(f"do some killing - kill -9 {pid}")
 		os.system(f"kill -9 {pid}  > /dev/null 2>&1 &")
 

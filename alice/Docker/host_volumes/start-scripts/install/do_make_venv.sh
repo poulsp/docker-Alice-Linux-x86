@@ -76,11 +76,12 @@ fi
 
 # Be sure we start a new training session
 echo '{}' > /home/pi/ProjectAlice/var/cache/dialogTemplates/checksums.json
-rm /home/pi/ProjectAlice/var/cache/nlu/trainingData/*
-rm /home/pi/ProjectAlice/assistant/assistant.json
-rm /home/pi/ProjectAlice/assistant/nlu_engine/nlu_engine.json
+# rm /home/pi/ProjectAlice/var/cache/nlu/trainingData/*
+# rm /home/pi/ProjectAlice/assistant/assistant.json
+# rm /home/pi/ProjectAlice/assistant/nlu_engine/nlu_engine.json
 
 # Start a watchdog there react when the training is finished. Killing main.py
+sudo chmod +x /start-scripts/system_do_not_touch/shutdown_installer.py
 /start-scripts/system_do_not_touch/shutdown_installer.py &
 
 ~/bin/sed_all.sh

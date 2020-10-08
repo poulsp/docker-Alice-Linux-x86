@@ -50,7 +50,7 @@ Enter the following in a terminal:
     read [More](#more) section first.
 - cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"`
   - For now we only use Google ASR with fallback to Snips ASR.
-- cd into alice/Docker/host_volumes/config `"snips.toml.example snips.toml"`.
+- cd into alice/Docker/host_volumes/config `"cp snips.toml.example snips.toml"`.
   - edit `snips.toml`
 - cd back into alice root directory where the docker-compose.yml is.
   - Enter **`"bash build.sh"`**
