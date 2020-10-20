@@ -79,7 +79,7 @@ class Reloader():
 
 #-----------------------------------------------
 	def readConfig(self):
-		with open('config.json') as config_file:
+		with open('/home/pi/ProjectAlice/config.json') as config_file:
 				self._config = json.load(config_file)
 
 
