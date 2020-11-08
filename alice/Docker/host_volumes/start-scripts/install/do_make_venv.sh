@@ -61,6 +61,7 @@ watchdog
 beautifulsoup4==4.9.3
 lxml==4.5.2
 python-musicpd==0.4.4
+sounddevice==0.4.1
 END_HEREDOC
 )
 

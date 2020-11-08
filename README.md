@@ -1,9 +1,8 @@
-# docker-Alice-Linux-x86.
+x# docker-Alice-Linux-x86.
 Let ProjectAlice run in a docker container.
 
 I run it on a Ubuntu Destop.
-I have only used it with Google ASR, fallback to Snips ASR and Amazon Polly TTS.
-
+You can **only run it with** Google ASR, fallback to Snips ASR and Amazon Polly TTS for now.
 As this is work in progress. it will be a good idea to make an update occasionally after you have installed it or fiddle with it yourself.
 ```
 "git stash"
@@ -12,7 +11,7 @@ As this is work in progress. it will be a good idea to make an update occasional
 ```
 Currently we check out the master branch. The master branch is what formerly was 1.0.0-b3. It's fairly stable release.
 
-If you want to checkout a newer branch, just cd into ProjectAlice and do:
+If you want to checkout a newer branch, just cd into `host_volumes/ProjectAlice` and do:
 ```
 "git stash"
 "git stash clear"
@@ -26,7 +25,7 @@ Bla. bla bla
 Read [Requirements](#Requirements), [Installing](#Installing) but be sure also to read [More](#more).
 
 ## Installing.
-Have these three files in Your head from now. It will save you for troubles later on.
+Have these three files in your head from now. It will save you for troubles later on.
 ```
 "config.json" "snips.toml" and `"googlecredentials.json"
 ```
@@ -38,17 +37,15 @@ Enter the following in a terminal:
 - Edit `Timezone.env` to your needs.
 - cd into `"alice/misc"`
   - `"cp config.json.example config.json"`
-  - Edit `config.json` for your needs.
-
+  - Edit `config.json` for your needs, **but only edit the setting there are capitalized** in the `config.json.example`.
 - Remember
   - "awsAccessKey": "",
      "awsRegion": "eu-central-1",
      "awsSecretKey": "
 
-- you can also just use your own, if you already have one working.<br>
     if you use a diffent mqtt host edit `"config.json"` in alice/misc and  `"snips.toml"` in alice/Docker/host_volumes/config.<br>
     read [More](#more) section first.
-- cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"`
+- cp your `"googlecredentials.json"` to `"alice/misc/googlecredentials.json"` **do not put it in** `config.json`
   - For now we only use Google ASR with fallback to Snips ASR.
 - cd into alice/Docker/host_volumes/config `"cp snips.toml.example snips.toml"`.
   - edit `snips.toml`
@@ -71,7 +68,6 @@ Enter the following in a terminal:
 When you run the container manualy always use `"alice-start"` not `"venv/bin/python main.py".`
 
 ## More.
-You can edit ``.
 Under commands you can set different start commands.
 ```
 # If using the mosquitto inside the container, is the same as starting it manually.
@@ -146,6 +142,10 @@ Alice first welcome you based on her creation of a new database.
 It is best to start there with an old snips satellite.
 But if you have installed a Alice satellite then use the following instruction.
 Same procedure for the old snips satellite.
+To install the old snips-satellite:
+`wget https://raspbian.snips.ai/respeaker_iot/pool/s/sn/snips-satellite_0.64.0_armhf.deb`
+`dpkg -i snips-satellite_0.64.0_armhf.deb`
+
 
 ssh into the satellite.
 sudo nano /etc/snips.toml and edit:
@@ -193,7 +193,7 @@ Make a write about
 reloader.py is used to develop skills and other things much faster than normal stop/start of ProjectAlice.
 What it does is monitor the folder (a watchdog) in which you are developing.
 When a change occurs, for example you press save(ctrl-s) reloader.py will then automatically restart ProjectAlice. If it is a Dialog Template json you change, Alice will begin to retrain.
-When you not develop to the web interface, it will pay off to set "webInterfaceActive": true in config.json
+When you not develop to the web interface, it will pay off to set "webInterfaceActive": false in config.json
 With out active web interface i takes on my machine about 0.9 seconds to restart ProjectAlice and about 14 seconds to retrain the 5 core skills.
 
 Make a write about

@@ -1,7 +1,7 @@
 {
     "activeCountryCode": "US",
     "activeLanguage": "en",
-    "adminPinCode": 1234,
+    "adminPinCode": 9999,
     "advancedDebug": false,
     "aliceAutoUpdate": false,
     "aliceUpdateChannel": "master",
@@ -24,7 +24,7 @@
     "displaySystemUsage": false,
     "enableDataStoring": true,
     "githubToken": "YOUR GITHUBTOKEN",
-    "githubUsername": "YOUR NAME",
+    "githubUsername": "YOUR GITHUBUSERNAME",
     "ibmCloudAPIKey": "",
     "ibmCloudAPIURL": "",
     "keepASROffline": false,
@@ -93,5 +93,5 @@
     "webInterfaceActive": true,
     "webInterfacePort": 5000,
     "whisperWhenSleeping": true,
-    "wifipassword": "YOUR WIFI PASSWORD"
+    "wifipassword": ""
 }

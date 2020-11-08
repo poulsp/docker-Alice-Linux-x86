@@ -153,7 +153,5 @@ PS1="$PPS1"
 proml
 
 
-
-#:/home/pi/.local/bin
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:/home/pi/.local/bin"
 source /usr/lib/mc/mc.sh
