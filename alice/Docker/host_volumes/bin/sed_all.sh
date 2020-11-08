@@ -1,7 +1,9 @@
 #!/bin/bash
 
 
-~/bin/SEDS/sed_webinterface.sh
+#~/bin/SEDS/sed_webinterface.sh
+
+~/bin/SEDS/sed_talkManager.sh
 ~/bin/SEDS/sed_webinterface_colors.sh
 
 
