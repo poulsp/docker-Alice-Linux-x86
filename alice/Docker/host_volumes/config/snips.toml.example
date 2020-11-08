@@ -1,5 +1,5 @@
 [snips-common]
-##mqtt = "YOUR DOCKER HOST IP:1883"
+mqtt = "YOUR DOCKER HOST IP:1883"
 assistant = "/home/pi/ProjectAlice/assistant"
 
 ## MQTT authentication
