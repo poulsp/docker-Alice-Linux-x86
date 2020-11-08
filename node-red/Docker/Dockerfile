@@ -13,9 +13,9 @@ FROM nodered/node-red-docker:rpi-v8
 
 RUN  set -ex \
   #&& apt-get install -y mc joe \
-  && npm install node-red-dashboard \
-  && npm install node-red-contrib-nora
+  && npm install node-red-dashboard
 
+    # npm install node-red-contrib-nora
     # npm  install moment
     # npm  install node-red-contrib-config
     # npm  install node-red-contrib-grove

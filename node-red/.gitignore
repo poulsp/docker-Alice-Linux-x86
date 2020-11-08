@@ -1,3 +1,7 @@
+/gemme
+
 /Docker/host_volumes/data/*
 !/Docker/host_volumes/data/.keep
-/gemme
+
+/Docker/host_volumes/AliceScenarioNodesContent/*
+!/Docker/host_volumes/AliceScenarioNodesContent/.keep
