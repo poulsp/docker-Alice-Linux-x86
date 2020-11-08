@@ -1,4 +1,4 @@
-x# docker-Alice-Linux-x86.
+# docker-Alice-Linux-x86.
 Let ProjectAlice run in a docker container.
 
 I run it on a Ubuntu Destop.
@@ -9,14 +9,14 @@ As this is work in progress. it will be a good idea to make an update occasional
 "git stash clear"
 "git pull"
 ```
-Currently we check out the master branch. The master branch is what formerly was 1.0.0-b3. It's fairly stable release.
+Currently we check out the master branch. The master branch is what formerly was 1.0.0-b4. It's fairly stable release.
 
 If you want to checkout a newer branch, just cd into `host_volumes/ProjectAlice` and do:
 ```
 "git stash"
 "git stash clear"
 "git checkout <branch>"
-"e.g git checkout 1.0.0-b4"
+"e.g git checkout 1.0.0-b5"
 "git pull"
 ```
 
@@ -24,6 +24,7 @@ Bla. bla bla
 
 Read [Requirements](#Requirements), [Installing](#Installing) but be sure also to read [More](#more).
 
+If you want to use audio input and output in the images then See  [Experimental](#Experimental).
 ## Installing.
 Have these three files in your head from now. It will save you for troubles later on.
 ```
@@ -243,4 +244,5 @@ Project Alice belongs to the [Project Alice Organisation](https://docs.projectal
 I have made this repo for my self, so I am able to develop skills in an easy and quick way  and at the same time I can tamper with ProjectAlice.
  This is work in progress and the code is as it is.
  Use it at your own risk/fun.
+
 
