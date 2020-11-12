@@ -142,6 +142,8 @@ RUN set -xe \
     && systemctl stop snapserver  \
     && sed -i "s/\.*source = pipe:\/\/\/tmp\/snapfifo?name=default/source = pipe:\/\/\/dev\/shm\/snapfifo?name=default/" /etc/snapserver.conf \
     && sed -i "s/\.*stream = pipe:\/\/\/tmp\/snapfifo?name=default/stream = pipe:\/\/\/dev\/shm\/snapfifo?name=default/" /etc/snapserver.conf \
+    && sed -i "s/\.*User=snapserver/User=pi/" /lib/systemd/system/snapserver.service \
+    && sed -i "s/\.*Group=snapserver/Group=pi/" /lib/systemd/system/snapserver.service \
     && apt-get clean \
     && apt-get -y auto-remove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
