@@ -226,8 +226,10 @@ If you want to reinstall ProjectAlice then delete  `alice/Docker/host_volumes/Pr
 If you have made changes to your skills, remember to save them first.
 ```
 cd into alice root directory
+# Pull down the the docker container
+docker-compose down
 rm -rf Docker/host_volumes/ProjectAlice
-docker-compose up
+bash build.sh
 ```
 
 ## Experimental.
