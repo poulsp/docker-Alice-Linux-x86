@@ -70,7 +70,7 @@ Enter the following in a terminal:
 When you run the container manualy always use `"alice-start"` not `"venv/bin/python main.py".`
 
 ## More.
-Under commands you can set different start commands.
+Under commands you can set different start commands. (in docker-compose.yml)
 ```
 # If using the mosquitto inside the container, is the same as starting it manually.
 # You must then edit snips.toml and config.json accordingly.
