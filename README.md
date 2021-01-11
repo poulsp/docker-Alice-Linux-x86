@@ -1,5 +1,8 @@
 # docker-Alice-Linux-x86.
 Let ProjectAlice run in a docker container.
+
+It is only build for an amd-64 architecture.
+
 It's main goal is to have an ProjectAlice to develop skill and tamper with Alice core code in a fast and semi-automated development environment.
 
 I run it on a Ubuntu Destop.
