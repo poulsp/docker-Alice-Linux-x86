@@ -23,6 +23,7 @@ If you want to checkout a newer branch, just cd into `host_volumes/ProjectAlice`
 "e.g git checkout 1.0.0-b5"
 "git pull"
 ```
+and edit `host_volumes/ProjectAlice/config.json` accordingly. Channels "beta" etc.
 
 Bla. bla bla
 
