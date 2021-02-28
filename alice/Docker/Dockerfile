@@ -1,5 +1,4 @@
 #  time docker build $BUILD_ARGS --force-rm --build-arg UID=$"$USERID" --build-arg GID=$"$GROUPID"  -t poulsp/alice-amd -f Docker/Dockerfile .
-#  time docker build  --force-rm  -t poulsp/alice-amd-new -f Docker/Dockerfile .
 
 FROM python:3.7.7-buster
 
@@ -98,6 +97,7 @@ RUN set -xe \
         libatlas-base-dev \
         gfortran  \
         ffmpeg \
+        nginx \
     && usermod -a -G audio ${USER} \
     && cd / \
     &&  wget https://debian.snips.ai/stretch/pool/s/sn/snips-platform-common_0.64.0_amd64.deb \

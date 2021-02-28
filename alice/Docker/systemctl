@@ -1,8 +1,9 @@
 #!/bin/bash
 
+# This is an emulator for systemd's systemctl.
+# The images does not contain systemd but ProjectAlice use systemctl to start snips-things and more.
 # systemctl are placed in /bin
-# sudo systemctl start snips-hotword
-# clear;ps axu;sudo systemctl stop snips-hotword;ps axu
+# e.g. sudo systemctl start snips-hotword
 
 PARAM1=$1
 APP=$2
@@ -21,7 +22,7 @@ stopApp() {
 
 startpApp() {
   #echo "Function startpApp $APP executed."
-  su pi -g pi -c "$APP  > /dev/null 2>&1 &"
+  su  -c "$APP > /dev/null 2>&1 &"
   return
 }
 
