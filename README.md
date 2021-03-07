@@ -3,7 +3,7 @@ Let ProjectAlice run in a docker container.
 
 It is only build for an amd-64 architecture.
 
-**I will pause maintaining this repo.**
+**I pause maintaining this repo.**
 
 It don't fit to the philosophy of ProjectAlice for now.
 
