@@ -3,6 +3,9 @@ Let ProjectAlice run in a docker container.
 
 It is only build for an amd-64 architecture.
 
+**I will pause maintaining this repo.**
+It don't fit to the philosophy of ProjectAlice for now.
+I will recommend to join [discord](https://discord.gg/C6HNtzV) to follow the development and progress of ProjectAlice.
 
 
 It's main goal is to have an ProjectAlice to develop skill and tamper with Alice core code in a fast and semi-automated development environment.
